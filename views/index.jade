@@ -1,8 +1,7 @@
 doctype 5
 html
   head
-    title= title
-    link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")    
+    title= title  
     link(rel='stylesheet', href='/stylesheets/fantastic.css')    
     link(rel='stylesheet', href='/stylesheets/index.css')
     link(rel="shortcut icon", href="../media/images/favicon.ico")
@@ -10,13 +9,29 @@ html
     #navbar
       ul.navLinks
         li.navLink
-          .button Home
+          a(href='/')
+            .button Home
         li.navLink
-          .button Toys/Tools
+          .button.dropdown 
+            ul.dropdown-menu
+              li Toys/Tools
+              li <div class='fuzzyHR'>
+              li <a href='/tonetest'>ToneTest</a>
+              li <a href='/jqstep'>jQstep</a>
         li.navLink
           .button Leaderboards
+        li.navLink
+          .button.dropdown
+            ul.dropdown-menu
+              li Stuff
+              li <div class='fuzzyHR'>
+              li Things
+              li More stuff
+              li the same things
+              li so many things
+              li wow, look at all this stuff
       .help ?
     p #{time}
 
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
-  script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")
+  script(src="../javascripts/index.js")
