@@ -1,5 +1,22 @@
-extends layout
+doctype 5
+html
+  head
+    title= title
+    link(rel="stylesheet", href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css")    
+    link(rel='stylesheet', href='/stylesheets/fantastic.css')    
+    link(rel='stylesheet', href='/stylesheets/index.css')
+    link(rel="shortcut icon", href="../media/images/favicon.ico")
+  body
+    #navbar
+      ul.navLinks
+        li.navLink
+          .button Home
+        li.navLink
+          .button Toys/Tools
+        li.navLink
+          .button Leaderboards
+      .help ?
+    p #{time}
 
-block content
-  h1= title
-  p Welcome to #{title}
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+  script(src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js")

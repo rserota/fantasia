@@ -26,17 +26,17 @@ var tones = [
 
 
 var enabledIntervals = [
-	[true,1],
-	[true,2],
-	[true,3],
-	[true,4],
-	[true,5],
-	[true,7],
-	[true,8],
-	[true,9],
-	[true,10],
-	[true,11],
-	[true,12]
+	[false,1],
+	[false,2],
+	[false,3],
+	[false,4],
+	[false,5],
+	[false,7],
+	[false,8],
+	[false,9],
+	[false,10],
+	[false,11],
+	[false,12]
 ];
 var keyEvents = [m2Event = $.Event('keydown'),
     M2Event = $.Event('keydown'),

@@ -28,10 +28,11 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
+app.get('/',routes.index)
 
-
+app.get('/_:quote', function(request, response){
+    response.render('index', {time : new Date()})
+})
 app.get('/tonetest', function(request, response){
     response.render('tonetest')
 })
@@ -40,6 +41,7 @@ app.get('/jqstep', function(request, response){
     response.render('jqstep')
 })
 
+/** Start the server */
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
