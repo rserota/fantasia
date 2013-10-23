@@ -1,18 +1,18 @@
 
-var C1 = new Audio('../media/sounds/C1.wav'),
-    D1 = new Audio('../media/sounds/D1.wav'),
-    E1 = new Audio('../media/sounds/E1.wav'),
-    F1 = new Audio('../media/sounds/F1.wav'),
-    G1 = new Audio('../media/sounds/G1.wav'),
-    A1 = new Audio('../media/sounds/A1.wav'),
-    B1 = new Audio('../media/sounds/B1.wav'),
-    C2 = new Audio('../media/sounds/C2.wav'),
-    D2 = new Audio('../media/sounds/D2.wav'),
-    E2 = new Audio('../media/sounds/E2.wav'),
-    F2 = new Audio('../media/sounds/F2.wav'),
-    G2 = new Audio('../media/sounds/G2.wav'),
-    A2 = new Audio('../media/sounds/A2.wav'),
-    B2 = new Audio('../media/sounds/A2.wav')
+var C1 = new Howl({urls : ['../media/sounds/bass/C1.wav']}),
+    D1 = new Howl({urls : ['../media/sounds/bass/D1.wav']}),
+    E1 = new Howl({urls : ['../media/sounds/bass/E1.wav']}),
+    F1 = new Howl({urls : ['../media/sounds/bass/F1.wav']}),
+    G1 = new Howl({urls : ['../media/sounds/bass/G1.wav']}),
+    A1 = new Howl({urls : ['../media/sounds/bass/A1.wav']}),
+    B1 = new Howl({urls : ['../media/sounds/bass/B1.wav']}),
+    C2 = new Howl({urls : ['../media/sounds/bass/C2.wav']}),
+    D2 = new Howl({urls : ['../media/sounds/bass/D2.wav']}),
+    E2 = new Howl({urls : ['../media/sounds/bass/E2.wav']}),
+    F2 = new Howl({urls : ['../media/sounds/bass/F2.wav']}),
+    G2 = new Howl({urls : ['../media/sounds/bass/G2.wav']}),
+    A2 = new Howl({urls : ['../media/sounds/bass/A2.wav']}),
+    B2 = new Howl({urls : ['../media/sounds/bass/B2.wav']})
 
 
 
@@ -94,7 +94,7 @@ $(document).ready(function(){
             song.TimeoutIDs.push(setTimeout(function(){
                 if ($this.hasClass('on')){
                     $this.addClass('playing')
-                    song.notes[$this.parent().index()].currentTime = 0
+                    // song.notes[$this.parent().index()].stop()
                     song.notes[$this.parent().index()].play()
                     setTimeout(function(){
                         $this.removeClass('playing')
@@ -114,7 +114,7 @@ $(document).ready(function(){
 
     $('.steppingToggle').on('click',function(){
     	$(this).toggleClass('on')
-        song.playing=!song.playing
+        song.playing = !song.playing
     	if($(this).hasClass('on')){
     	    step()
     	}

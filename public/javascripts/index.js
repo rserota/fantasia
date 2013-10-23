@@ -23,11 +23,9 @@ $(document).ready(function(){
         setTimeout(function(){
             var size = ($this.find('li').size())
             console.log(size)
-            var newHeight = (200 + (40*(size-2)))
+            var newHeight = (65 + (36*(size-2)))
             $this.height(newHeight)
             
         },1)
     })
-
-    // 
 })
