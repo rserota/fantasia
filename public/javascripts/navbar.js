@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-    $button = $('.button')
+    $button = $('.navButton')
     $button.height(28)
     $(document).on('click',function(){
         $button.removeClass('on')
@@ -17,7 +17,7 @@ $(document).ready(function(){
         },1)
     })
 
-    $('.button.dropdown').on('click',function(event){
+    $('.navButton.dropdown').on('click',function(event){
         $this=$(this)
         $button.removeClass('on')
         setTimeout(function(){

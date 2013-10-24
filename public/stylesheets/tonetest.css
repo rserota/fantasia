@@ -18,17 +18,11 @@ body {
 }
 
 #navbar {
-
-	background-color:black;
-	margin-bottom:5px;
-	transition: all .6s;
-	-webkit-transition: all .6s;
-	overflow:hidden;
-
 }
 
 #intervalEnabler {
 	margin:7px;
+	margin-top:89px;
 	float:right;
 	background-color:rgba(5,5,5,.3);
 	height:auto;
@@ -156,27 +150,18 @@ body {
 	box-shadow: 8px 8px 3px rgba(0,0,0,.7);
 	background-color:rgba(0,0,0,1);
 }
-.score {
-	top:30%;
-}
-.help {
-	-webkit-transition:all .4s;
-	transition: all .4s;
-	display:inline-block;
-	border: 5px solid ghostwhite;
-	border-radius: 1000px;
-	float:right;
-/*	height:40px;*/
 
-	text-align:center;
-	box-shadow: 8px 8px 3px rgba(0,0,0,.7);
-	background-color:rgba(0,0,0,1);
-	color:ghostwhite;
-	margin:10px;
-	font-family:fantasy;
-	font-size:32px;
-	padding:4px 15px 0px 15px;
+.timer {
+	top:20%;
 }
+
+.score {
+	top:40%;
+}
+
+.help {
+}
+
 .open {
 	padding-left:20px;
 	width:250px;
@@ -185,8 +170,8 @@ body {
 
 .goBox{
 	position:fixed;
-	left:15%;
-	top:40%;
+	right:55%;
+	top:50%;
 }
 @media screen and (max-width: 700px) {
 	#intervalEnabler * {

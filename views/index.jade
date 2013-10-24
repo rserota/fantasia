@@ -6,40 +6,8 @@ html
     link(rel='stylesheet', href='/stylesheets/index.css')
     link(rel="shortcut icon", href="../media/images/favicon.ico")
   body
-    #navbar
-      ul.navLinks
-        li.navLink
-          a(href='/')
-            .button Home
-        li.navLink
-          .button.dropdown 
-            ul.dropdown-menu
-              li Toys/Tools
-              li <div class='fuzzyHR'>
-              li <a href='/tonetest'>ToneTest</a>
-              li <a href='/jqstep'>jQstep</a>
-        li.navLink
-          .button Leaderboards
-        li.navLink
-          .button.dropdown
-            ul.dropdown-menu
-              li Stuff
-              li <div class='fuzzyHR'>
-              li Things
-              li More stuff
-              li the same things
-              li so many things
-              li wow, look at all this stuff
-                            li More stuff
-              li the same things
-              li so many things
-              li wow, look at all this stuff
-                            li More stuff
-              li the same things
-              li so many things
-              li wow, look at all this stuff
-      .help ?
+    include navbar
     p #{time}
 
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
-  script(src="../javascripts/index.js")
+  script(src="../javascripts/navbar.js")

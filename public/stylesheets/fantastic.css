@@ -40,7 +40,7 @@ body {
     display:inline-block;
     padding:0;
     overflow:visible;
-
+    max-width: 88%
 }
 
 .navLink {
@@ -52,11 +52,13 @@ body {
 .help {
     -webkit-transition:all .4s;
     transition: all .4s;
-    display:inline-block;
     border: 5px solid ghostwhite;
     border-radius: 1000px;
     float:right;
-/*  height:40px;*/
+    position:fixed;
+    right:2%;
+    top:1%;
+    height:40px;
     text-align:center;
     box-shadow: 8px 8px 3px rgba(0,0,0,.7);
     background-color:rgba(0,0,0,1);
@@ -67,9 +69,14 @@ body {
     padding:4px 15px 0px 15px;
 }
 
-.button {
+.navButton {
     font-size:20px;
+    margin:5px;
+    overflow:hidden;
     font-weight:bold;
+}
+
+.fantastic {
     text-align:center;
     background-image: linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
     background-image: -o-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
@@ -82,10 +89,8 @@ body {
     position: relative;
     box-shadow: 5px 5px 3px rgba(0,0,0,.7);
     padding:4px;
-    margin:5px;
     transition: all 0.6s;
     -webkit-transition:all 0.6s;
-    overflow:hidden;
 }
 
 .on {
@@ -95,7 +100,6 @@ body {
     background-image: -moz-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
     background-image: -webkit-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
     background-image: -ms-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
-
     color:black;
     top:2px;
     left:1px;
@@ -120,3 +124,8 @@ body {
     box-shadow:0px 8px 10px #000;
     margin-bottom: 20px;
 }
+
+@media screen and (max-width: 770px) {
+    #navbar {
+        height:155px;
+    }

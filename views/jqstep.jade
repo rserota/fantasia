@@ -1,1 +1,48 @@
-include jqstep.html
+doctype 5
+html
+  head
+    title= title  
+    link(rel='stylesheet', href='../stylesheets/fantastic.css')    
+    link(rel='stylesheet', href='../stylesheets/jqstep.css')
+    link(rel="shortcut icon", href="../media/images/favicon.ico")
+  body#home
+    include navbar
+    .controlsContainer
+      .steppingToggle.button Step
+      .stepCounterContainer Step Counter
+        .stepCounter
+      .bpmCounterContainer BPM
+        .bpmCounter
+    .rowContainer
+      .row.row1
+      .row.row2
+      .row.row3
+      .row.row4
+      .row.row5
+      .row.row6
+      .row.row7
+      .row.row8
+      .row.row9
+      .row.row10
+      .row.row11
+      .row.row12
+      .row.row13
+      .row.row14
+    #chordboard
+      #chords
+        .keybound.fantastic#1
+        .keybound.fantastic#2
+        .keybound.fantastic#3
+        .keybound.fantastic#4
+      #tones
+        .keybound.fantastic#7
+        .keybound.fantastic#8        
+        .keybound.fantastic#9
+        .keybound.fantastic#0
+    .feedback.
+      This application has two components: a step sequencer, and a live instrument.  The step sequencer allows you to schedule notes to be played in a set pattern.  With the 'Step Counter' buttons, you can choose how long you want your pattern to be.  With the 'BPM' buttons, you can choose how fast you want your pattern to play.  After you select how long you want your pattern to be, a grid of notes will appear.  Columns represent timepoints, and rows represent different notes.  Click on any note to schedule that note to play.  Once you've selected all the notes you want to play, press the 'Step' button to start or stop playing your scheduled notes.  The live instrument allows you to improvise melodies in real time along with your scheduled pattern.  Use the number keys 1, 2, 3, and 4 to select a C, F, G, or A chord, respectively.  Once you've selected a chord, use the number keys 7, 8, 9, and 0 to play the root, third, fifth, and 7th note, respectively, from the selected chord.
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+  script(src="http://cdnjs.cloudflare.com/ajax/libs/howler/1.1.11/howler.min.js")
+  script(src="../javascripts/navbar.js")
+  script(src="../javascripts/jqstep.js")
+  script(src="../javascripts/chordboard.js")
