@@ -59,6 +59,13 @@ passport.use(new LocalStrategy(
   }
 ));
 
+app.isAuthenticated = function(request, response, next){
+    if(request.isAuthenticated()){
+        return next()
+    }
+    response.redirect("/")
+};
+
 app.post('/login', 
   passport.authenticate('local', { failureRedirect: '/login' }),
   function(req, res) {
@@ -67,12 +74,6 @@ app.post('/login',
 
 ///
 
-app.isAuthenticated = function(request, response, next){
-    if(request.isAuthenticated()){
-        return next()
-    }
-    response.redirect("/login")
-};
 
 app.get('/',routes.index)
 
