@@ -27,8 +27,8 @@ body {
     background-image: -webkit-linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
     background-image: -ms-linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
     margin-bottom:5px;
-    border-bottom:4px solid black;
-/*    overflow:hidden;*/
+/*    border-bottom:4px solid black;*/
+    box-shadow: -1px 4px 3px 0px rgba(0,0,0,.7);
     position:fixed;
     top:0%;
     z-index: 10;

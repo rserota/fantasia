@@ -1,1 +1,30 @@
-include tonetest.html
+doctype 5
+html(lang='en')
+    head
+        meta(charset="utf-8")
+        title ToneTest
+        link(rel="stylesheet", href="../stylesheets/fantastic.css")
+        link(rel="stylesheet", href="../stylesheets/tonetest.css")
+        link(rel="shortcut icon", href="../media/images/favicon.ico")
+    body#home
+        include navbar
+        .timer
+        .score
+        #intervalEnabler
+            .button m2nd
+            .button m2nd
+            .button m3rd
+            .button M3rd
+            .button P4th
+            .button P5th
+            .button m6th
+            .button M6th
+            .button m7th
+            .button M7th
+            .button Oct
+        .goBox
+            .go.button GO!
+        .feedback
+        script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+        script(src="../javascripts/tonetest.js")
+        script(src="../javascripts/navbar.js")
