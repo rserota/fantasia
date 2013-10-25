@@ -51,7 +51,7 @@ $(document).ready(function(){
 		    $('.stepCount.button').removeClass('on')
 		    $(this).addClass('on')
 		    song.numSteps = $(this).index()+1
-		    $('.rowContainer').width(32 * song.numSteps + 500 + 'px')
+		    $('.rowContainer').width(40 * song.numSteps + 600 + 'px')
         }
 
 		for (var i=1; i < $('.row').length+1; i++ ){

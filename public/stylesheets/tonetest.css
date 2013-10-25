@@ -84,6 +84,7 @@ body {
 	top:8px;
 	left:3px;
 }
+
 .feedback {
 	background-color:rgba(0,0,0,.9);
 	border: 10px solid black;
@@ -102,7 +103,6 @@ body {
 	color:rgba(0,0,0,0);
 	-webkit-transition:all .4s;
 	transition: all .4s;
-
 }
 
 .feedback.wrong {

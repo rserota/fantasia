@@ -5,6 +5,8 @@
  var silliness = require('./silliness')
 
 exports.index = function(request, response){
-    randQuote = silliness.quotes[Math.floor(Math.random()*silliness.quotes.length)]
-    response.redirect('/_:' + randQuote)
+    console.log(request.user)
+    // randQuote = silliness.quotes[Math.floor(Math.random()*silliness.quotes.length)]
+    // response.redirect('/' + randQuote)
+    response.render('index')
 }

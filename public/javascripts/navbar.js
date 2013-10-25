@@ -2,7 +2,6 @@
 
 $(document).ready(function(){
     $button = $('.navButton')
-    $button.height(28)
     $(document).on('click',function(){
         $button.removeClass('on')
         $button.height(28)

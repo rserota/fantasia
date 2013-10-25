@@ -7,7 +7,12 @@ html
     link(rel="shortcut icon", href="../media/images/favicon.ico")
   body
     include navbar
-    p #{time}
+    
+    form#loginForm(action="/login",method="post")
+      input(name="username",type="text")
+      input(name="password",type="password")
+      input(name="submit",type="submit")
+    .feedback
 
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
   script(src="../javascripts/navbar.js")
