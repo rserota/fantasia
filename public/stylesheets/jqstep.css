@@ -196,8 +196,8 @@
 	color: rgba(0,0,0,.9);
 	font-size:16px;
 	padding: 5px 50px 0px 5px;
-	min-height:100px;
 	height: auto;
+    min-height:200px;
 	overflow:none;
 }
 

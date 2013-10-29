@@ -108,7 +108,7 @@ var helpText = 'This app is for aspiring musicians to train their ears to recogn
     ' want to be tested on.  The more intervals you enable, the more points you earn' +
     " for each correct answer.  When you're ready to start, press the 'GO' button." +
     ' You will have 30 seconds to identify as many intervals as you can.' +
-    ' You can identify intervals with the buttons on the right, or you can use your keyboard' +
+    ' You can identify intervals with the buttons on the right, or you can use your keyboard.' +
     " The keyboard controls are:  (m2nd:'Q') (M2nd:'2') (m3rd:'W') (M3rd:'3')" +
     " (P4th:'4') (P5th:'5') (m6th:'T') (M6th:'6') (m7th:'Y') (M7th:'7') (Oct:'8')"
 
