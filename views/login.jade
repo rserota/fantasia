@@ -1,8 +1,22 @@
+doctype 5
+html
+  head
+    title= title  
+    link(rel='stylesheet', href='/stylesheets/fantastic.css')    
+    link(rel='stylesheet', href='/stylesheets/login.css')
+    link(rel="shortcut icon", href="../media/images/favicon.ico")
+  body
 
+    #buttonContainer
+      #login.fantastic Log in
+      #signup.fantastic Sign Up
 
-
+    
     form#loginForm(action="/login",method="post")
       input(name="username",type="text")
       input(name="password",type="password")
       input(name="submit",type="submit")
     .feedback
+
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+  script(src="../javascripts/login.js")

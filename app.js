@@ -63,31 +63,35 @@ app.isAuthenticated = function(request, response, next){
     if(request.isAuthenticated()){
         return next()
     }
-    response.redirect("/")
+    response.redirect("/login")
 };
 
-app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
 
 ///
 
 
-app.get('/',routes.index)
+app.get('/', app.isAuthenticated, routes.index)
+
+app.get('/login', function(request, response){
+  response.render('login')
+})
 
 app.get('/tonetest', app.isAuthenticated, function(request, response){
     response.render('tonetest')
 })
 
-app.get('/jqstep', function(request, response){
+app.get('/jqstep', app.isAuthenticated, function(request, response){
     response.render('jqstep')
 })
 
 app.get('/:quote', function(request, response){
     response.render('index', {time : new Date()})
 })
+
+app.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
+    res.redirect('/');
+});
+
 /** Start the server */
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
