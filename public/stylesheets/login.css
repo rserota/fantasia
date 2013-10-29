@@ -1,13 +1,13 @@
 .feedback {
     background-color:rgba(0,0,0,.9);
     border: 10px solid black;
-    height:200px;
+    height:150px;
     width:0px;
     display:inline-block;
     border-radius: 0px 20px 20px 0px;
     position:fixed;
     bottom:0%;
-    left:-1%;
+    left:-2%;
     text-align:center;
     font-size:72px;
     font-family:fantasy;
@@ -16,6 +16,7 @@
     color:rgba(0,0,0,0);
     -webkit-transition:all .4s;
     transition: all .4s;
+    overflow:hidden;
 }
 
 .feedback.wrong {
@@ -52,3 +53,48 @@
     height: 40px;
     margin: 20px;
 }
+
+.feedback.login, .feedback.signup {
+    width:300px;
+    height:200px;
+}
+
+.feedback.login {
+    background-color:rgba(20,70,200,.2);
+}
+
+.feedback.signup {
+    background-color:rgba(20,150,110,.2);
+}
+
+#loginform {
+    margin-top:20px;
+    -webkit-transition:all 1.5s;
+    transition: all 1.5s;
+
+}
+.form {
+    display:block;
+    font-size:16px;
+    border-radius:25px;
+    padding:15px;
+    border:inset black 4px;
+    background-color:rgba(240,240,255,.9);
+    margin: 13px 10px 0px 50px;
+    -webkit-transition:all .4s;
+    transition: all .4s;
+}
+
+.form:focus {
+    box-shadow: 2px 2px 3px 1px rgba(0,0,0,.7);
+    outline:none;
+}
+
+.hidden {
+    -webkit-transition:all .3s;
+    transition: all .3s;
+    opacity:0;
+}
+
+
+

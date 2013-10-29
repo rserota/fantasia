@@ -8,15 +8,16 @@ html
   body
 
     #buttonContainer
-      #login.fantastic Log in
       #signup.fantastic Sign Up
+      #login.fantastic Log in
 
     
-    form#loginForm(action="/login",method="post")
-      input(name="username",type="text")
-      input(name="password",type="password")
-      input(name="submit",type="submit")
+
     .feedback
+      form#loginform(action="/login",method="post")
+        input.form(name="username", placeholder="Username",type="text")
+        input.form(name="password", placeholder="Password",type="password")
+
 
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
   script(src="../javascripts/login.js")
