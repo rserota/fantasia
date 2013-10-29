@@ -80,7 +80,7 @@
     padding:15px;
     border:inset black 4px;
     background-color:rgba(240,240,255,.9);
-    margin: 13px 10px 0px 50px;
+    margin: 25px 10px 0px 50px;
     -webkit-transition:all .4s;
     transition: all .4s;
 }
