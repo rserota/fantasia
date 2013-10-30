@@ -46,7 +46,7 @@
     box-shadow: 2px 2px 1px rgba(0,0,0,.7);
 }
 
-#login, #signup {
+#login, #signup, #submit {
     padding-top:23px;
     display: inline-block;
     width: 100px;

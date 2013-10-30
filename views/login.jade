@@ -10,13 +10,14 @@ html
     #buttonContainer
       #signup.fantastic Sign Up
       #login.fantastic Log in
+      #submit.fantastic Submit
 
     
 
     .feedback
       form#loginform(action="/login",method="post")
-        input.form(name="username", placeholder="Username",type="text")
-        input.form(name="password", placeholder="Password",type="password")
+        input.form.username(name="username", placeholder="Username",type="text")
+        input.form.password(name="password", placeholder="Password",type="password")
 
 
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")

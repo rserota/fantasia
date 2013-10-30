@@ -35,4 +35,24 @@ $(document).ready(function(){
             }, 300)
         }
     })
+
+    var postLoginData = function(){
+        $.post('/login',{username : $('.username').val(), password : $('.password').val()}, function(data){
+            window.location.href = data
+            console.log(data)
+        })
+    }
+
+    $('#submit').on('click', function(){
+        postLoginData()
+        setTimeout(function(){$('#submit').removeClass('on')},700)
+    })
+    $('.form').on('keyup', function(event){
+        if (event.which === 13){
+            postLoginData()
+        }
+    })
+
+
 })
+

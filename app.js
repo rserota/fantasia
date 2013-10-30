@@ -68,7 +68,7 @@ app.isAuthenticated = function(request, response, next){
 
 
 ///
-
+var homepageURL = 'localhost:3000/'
 
 app.get('/', app.isAuthenticated, routes.index)
 
@@ -88,8 +88,8 @@ app.get('/:quote', function(request, response){
     response.render('index', {time : new Date()})
 })
 
-app.post('/login', passport.authenticate('local', { failureRedirect: '/login' }), function(req, res) {
-    res.redirect('/');
+app.post('/login', passport.authenticate('local'), function(request, response) {
+    response.send('/');
 });
 
 /** Start the server */
