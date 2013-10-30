@@ -41,7 +41,7 @@ if ('development' == app.get('env')) {
 ///
 
 passport.serializeUser(function(user, done) {
-  done(null, user);
+    done(null, user);
 });
 
 passport.deserializeUser(function(user, done) {
@@ -68,12 +68,12 @@ app.isAuthenticated = function(request, response, next){
 
 
 ///
-var homepageURL = 'localhost:3000/'
 
 app.get('/', app.isAuthenticated, routes.index)
 
 app.get('/login', function(request, response){
-  response.render('login')
+    response.status(418)
+    response.render('login')
 })
 
 app.get('/tonetest', app.isAuthenticated, function(request, response){
@@ -84,13 +84,15 @@ app.get('/jqstep', app.isAuthenticated, function(request, response){
     response.render('jqstep')
 })
 
-app.get('/:quote', function(request, response){
+app.get('/:quote', app.isAuthenticated, function(request, response){
     response.render('index', {time : new Date()})
 })
 
 app.post('/login', passport.authenticate('local'), function(request, response) {
+    request.user.loginDates.push(new Date())
     response.send('/');
 });
+
 
 /** Start the server */
 http.createServer(app).listen(app.get('port'), function(){

@@ -8,14 +8,16 @@ html
   body
 
     #buttonContainer
-      #signup.fantastic Sign Up
-      #login.fantastic Log in
+      #signup.fantastic.toggle Sign Up
+      #login.fantastic.toggle Log in
+      hr.fuzzyHR
       #submit.fantastic Submit
 
     
 
     .feedback
-      form#loginform(action="/login",method="post")
+      #feedbackLabel
+      form#loginform
         input.form.username(name="username", placeholder="Username",type="text")
         input.form.password(name="password", placeholder="Password",type="password")
 
