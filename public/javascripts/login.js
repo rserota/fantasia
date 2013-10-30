@@ -72,7 +72,9 @@ $(document).ready(function(){
     }
     
     var postSignupData = function(){
+        $.post('/signup', {username : $('.username').val(), password : $('.password').val()}, function(data){
 
+        })
     }
 
     var postData = function(){

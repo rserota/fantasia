@@ -89,10 +89,17 @@ app.get('/:quote', app.isAuthenticated, function(request, response){
 })
 
 app.post('/login', passport.authenticate('local'), function(request, response) {
+    db.User.find({_id : request.user._id})
     request.user.loginDates.push(new Date())
+    db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){
+      console.log('Saved the login date!')
+    })
     response.send('/');
 });
 
+app.post('/signup', function(request, response){
+    return
+})
 
 /** Start the server */
 http.createServer(app).listen(app.get('port'), function(){
