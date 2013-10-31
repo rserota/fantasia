@@ -61,7 +61,6 @@ passport.use(new LocalStrategy(
 
 app.isAuthenticated = function(request, response, next){
     if(request.isAuthenticated()){
-        response.locals.user = request.user
         return next()
     }
     response.redirect("/login")
@@ -85,14 +84,28 @@ app.get('/jqstep', app.isAuthenticated, function(request, response){
     response.render('jqstep')
 })
 
+app.get('/:quote', app.isAuthenticated, function(request, response){
+    response.render('index', {time : new Date()})
+})
 
 app.post('/login', passport.authenticate('local'), function(request, response) {
     request.user.loginDates.push(new Date())
+<<<<<<< HEAD
+    db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){
+      console.log('Saved the login date!')
+    })
+=======
     db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
+>>>>>>> e318bd08d4fedb4c8308a32776b2adbccb917131
     response.send('/');
 });
 
 app.post('/signup', function(request, response){
+<<<<<<< HEAD
+    return
+})
+
+=======
     var newGuy = new db.User({username : request.body.username, password : request.body.password})
     newGuy.save(function(error, User){
         if(error){response.send(error)}
@@ -119,6 +132,7 @@ app.get('/:quote', app.isAuthenticated, function(request, response){
 })
 //////////////////////////////
 
+>>>>>>> e318bd08d4fedb4c8308a32776b2adbccb917131
 /** Start the server */
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
