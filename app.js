@@ -61,7 +61,6 @@ passport.use(new LocalStrategy(
 
 app.isAuthenticated = function(request, response, next){
     if(request.isAuthenticated()){
-        response.locals.user = request.user
         return next()
     }
     response.redirect("/login")
@@ -85,35 +84,22 @@ app.get('/jqstep', app.isAuthenticated, function(request, response){
     response.render('jqstep')
 })
 
+app.get('/:quote', app.isAuthenticated, function(request, response){
+    response.render('index', {time : new Date()})
+})
 
 app.post('/login', passport.authenticate('local'), function(request, response) {
     db.User.find({_id : request.user._id})
     request.user.loginDates.push(new Date())
     db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){
+      console.log('Saved the login date!')
     })
     response.send('/');
 });
 
 app.post('/signup', function(request, response){
-    var newGuy = new db.User({username : request.body.username, password : request.body.password})
-    newGuy.save(function(error, User){
-        console.log('error:: ', error)
-        console.log('user:: ', user)
-        if(error){response.send(error)}
-        else {response.send('success')}
-    })
- })
-
-app.get('/getuserinfo', app.isAuthenticated, function(request, response){
-    console.log(request.user)
-    response.send(request.user)
+    return
 })
-
-/** THIS ROUTE MUST BE LAST */
-app.get('/:quote', app.isAuthenticated, function(request, response){
-    response.render('index', {time : new Date()})
-})
-
 
 /** Start the server */
 http.createServer(app).listen(app.get('port'), function(){
