@@ -87,33 +87,37 @@ app.get('/jqstep', app.isAuthenticated, function(request, response){
 
 
 app.post('/login', passport.authenticate('local'), function(request, response) {
-    db.User.find({_id : request.user._id})
     request.user.loginDates.push(new Date())
-    db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){
-    })
+    db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
     response.send('/');
 });
 
 app.post('/signup', function(request, response){
     var newGuy = new db.User({username : request.body.username, password : request.body.password})
     newGuy.save(function(error, User){
-        console.log('error:: ', error)
-        console.log('user:: ', user)
         if(error){response.send(error)}
         else {response.send('success')}
     })
  })
 
+app.get('/logout', function(request, response){
+    request.logout()
+    response.redirect('/login')
+})
+
 app.get('/getuserinfo', app.isAuthenticated, function(request, response){
-    console.log(request.user)
     response.send(request.user)
 })
+
+// app.post('/tonetestscore', )
+
+
 
 /** THIS ROUTE MUST BE LAST */
 app.get('/:quote', app.isAuthenticated, function(request, response){
     response.render('index', {time : new Date()})
 })
-
+//////////////////////////////
 
 /** Start the server */
 http.createServer(app).listen(app.get('port'), function(){

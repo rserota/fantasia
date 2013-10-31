@@ -11,4 +11,8 @@ var User = mongoose.model('User',{
     badges : {type : Array, default : []}
 })
 
+var Score = mongoose.model('Score', {
+    username : {type : String},
+    score : {type : Number}
+})
 exports.User = User 
