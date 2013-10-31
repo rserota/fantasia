@@ -86,6 +86,15 @@ app.get('/jqstep', app.isAuthenticated, function(request, response){
 })
 
 
+app.get('/logout', function(request, response){
+    request.logout()
+    response.redirect('/login')
+})
+
+app.get('/getuserinfo', app.isAuthenticated, function(request, response){
+    response.send(request.user)
+})
+
 app.post('/login', passport.authenticate('local'), function(request, response) {
     request.user.loginDates.push(new Date())
     db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
@@ -100,17 +109,19 @@ app.post('/signup', function(request, response){
     })
  })
 
-app.get('/logout', function(request, response){
-    request.logout()
-    response.redirect('/login')
+app.post('/tonetestscore', function(request, response){
+    newScore = new db.Score({username : request.user.username, score : request.body.score})
+    newScore.save(function(error, score){
+        response.send('Score submitted!')
+    })
 })
 
-app.get('/getuserinfo', app.isAuthenticated, function(request, response){
-    response.send(request.user)
+app.get('/leaderboards/alltime', app.isAuthenticated, function(request, response){
+
+    scores = db.Score.find({})
+    console.log(scores)
+    response.render('leaderboards', {scores : scores})
 })
-
-// app.post('/tonetestscore', )
-
 
 
 /** THIS ROUTE MUST BE LAST */

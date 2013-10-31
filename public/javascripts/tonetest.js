@@ -206,7 +206,9 @@ $(document).ready(function(){
 				else {
 					setGo()
 					$('.timer').toggleClass('open')
-					
+					$.post('/tonetestscore', {score : score}, function(data){
+                        console.log(data)
+                    })
 					$("#intervalEnabler .button").off("click")
 					setEnablerButtons()
 				}
