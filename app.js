@@ -117,12 +117,22 @@ app.post('/tonetestscore', function(request, response){
 })
 
 app.get('/leaderboards/alltime', app.isAuthenticated, function(request, response){
-
-    scores = db.Score.find({})
-    console.log(scores)
-    response.render('leaderboards', {scores : scores})
+    db.Score.find({}, function(error, scores){
+        scores.sort(function(a,b){return b.score - a.score})
+        response.render('leaderboards', {history : 'All Time', scores : scores})
+    })
 })
 
+app.get('/leaderboards/monthly', app.isAuthenticated, function(request, response){
+    var first = new Date()
+    first.setDate(1)
+    first.setHours(0)
+    first.setMinutes(0)
+    db.Score.find({date : {$gte : first}}, function(error, scores){
+        scores.sort(function(a,b){return b.score - a.score})
+        response.render('leaderboards', {history : 'Monthly', scores : scores})
+    })
+})
 
 /** THIS ROUTE MUST BE LAST */
 app.get('/:quote', app.isAuthenticated, function(request, response){

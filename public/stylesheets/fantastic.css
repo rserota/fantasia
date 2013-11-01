@@ -1,5 +1,5 @@
 * {
-    font-family:fantasy;
+    font-family: serif;
     -moz-user-select: none;
     -webkit-user-select: none;
     -ms-user-select: none;
@@ -35,7 +35,7 @@ a:hover {
 
 
 
-#navbar {
+#myNavbar {
     width:100%;
     height:79px;
     background-image: linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
@@ -53,7 +53,7 @@ a:hover {
     transition: all .6s;
 }
 
-.navLinks {
+.myNavLinks {
     list-style-type: none;
     margin:12px;
     display:inline-block;
@@ -62,7 +62,7 @@ a:hover {
     max-width: 88%
 }
 
-.navLink {
+.myNavLink {
     display:inline-block;
     vertical-align: top;
 }
@@ -83,17 +83,17 @@ a:hover {
     background-color:rgba(0,0,0,1);
     color:ghostwhite;
     margin:10px;
-    font-family:fantasy;
+    font-family:serif;
     font-size:32px;
     padding:4px 15px 0px 15px;
 }
 
-.navButton {
+.myNavButton {
     height:28px;
     font-size:20px;
     margin:5px;
     overflow:hidden;
-    font-weight:bold;
+/*    font-weight:bold;*/
 }
 
 .fantastic {
@@ -121,19 +121,20 @@ a:hover {
     background-image: -webkit-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
     background-image: -ms-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
     color:black;
-    top:2px;
-    left:1px;
+    top:5px;
+    left:2px;
     box-shadow: 2px 2px 1px rgba(0,0,0,.7);
     border-radius: 15px;
 
 }
 
-.dropdown-menu {
+.myDropdown-menu {
     padding:0;
     list-style-type: none;
+    margin-top:2px;
 }
 
-.dropdown-menu li {
+.myDropdown-menu li {
     padding-bottom:5px;
 }
 
@@ -146,6 +147,6 @@ a:hover {
 }
 
 @media screen and (max-width: 770px) {
-    #navbar {
-        height:155px;
+/*    #navbar {
+        height:155px;*/
     }

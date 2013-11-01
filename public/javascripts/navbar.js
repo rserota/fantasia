@@ -1,7 +1,7 @@
 
 
 $(document).ready(function(){
-    $button = $('.navButton')
+    $button = $('.myNavButton')
     $(document).on('click',function(){
         $button.removeClass('on')
         $button.height(28)
@@ -16,13 +16,13 @@ $(document).ready(function(){
         },1)
     })
 
-    $('.navButton.dropdown').on('click',function(event){
+    $('.myNavButton.myDropdown').on('click',function(event){
         $this=$(this)
         $button.removeClass('on')
         setTimeout(function(){
             var size = ($this.find('li').size())
             console.log(size)
-            var newHeight = (65 + (36*(size-2)))
+            var newHeight = (60 + (26*(size-2)))
             $this.height(newHeight)
             
         },1)
