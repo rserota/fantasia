@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
-
-mongoose.connect('mongodb://localhost/fantasia')
+db_url = process.env.MONGOHQ_URL || 'mongodb://localhost/fantasia'
+mongoose.connect(db_url)
 
 
 
