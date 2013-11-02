@@ -14,7 +14,7 @@ var app = express();
 var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 // my modules
-// var db = require('./db')
+var db = require('./db')
 
 // all environments
 app.set('port', process.env.PORT || 3000);

@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 db_url = process.env.MONGOHQ_URL || 'mongodb://localhost/fantasia'
-mongoose.connect(db_url)
+mongoose.connect('mongodb://heroku:ae78ae5aae91fb3c55881e4ec0122cc4@paulo.mongohq.com:10043/app19103424')
 
 
 
