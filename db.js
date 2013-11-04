@@ -6,7 +6,7 @@ mongoose.connect(db_url)
 
 var User = mongoose.model('User',{
     username : {type : String, match : /.../, required : true, unique : true},
-    password : {type : String, match : /...../, required : true},
+    password : {type : String, required : true},
     loginDates : {type : Array, default : []},
     badges : {type : Array, default : []}
 })

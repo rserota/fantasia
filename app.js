@@ -2,7 +2,7 @@
 /**
  * Module dependencies.
  */
-
+var bcrypt = require('bcrypt')
 var express = require('express');
 var routes = require('./routes');
 var user = require('./routes/user');
@@ -49,14 +49,20 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new LocalStrategy(
-  function(username, password, done) {
-    db.User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      if (password !== user.password) { return done(null, false); }
-      return done(null, user);
-    });
-  }
+    function(username, password, done) {
+        db.User.findOne({ username: username }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            bcrypt.compare(password, user.password, function(error, response){
+                if (response === true){
+                    return done(null,user)
+                }
+                else {
+                    return done(null, false)
+                }
+            })
+        });
+    }
 ));
 
 app.isAuthenticated = function(request, response, next){
@@ -102,12 +108,21 @@ app.post('/login', passport.authenticate('local'), function(request, response) {
 });
 
 app.post('/signup', function(request, response){
-    var newGuy = new db.User({username : request.body.username, password : request.body.password})
-    newGuy.save(function(error, User){
-        if(error){response.send(error)}
-        else {response.send('success')}
-    })
- })
+    if (request.body.password.length < 5){
+        response.send({errors : {password : true}})
+    }
+    else {
+        bcrypt.genSalt(10, function(error, salt){
+            bcrypt.hash(request.body.password, salt, function(error, hash){
+                var newGuy = new db.User({username : request.body.username, password : hash})
+                newGuy.save(function(error, User){
+                    if(error){response.send(error)}
+                    else {response.send('success')}
+                })
+            })
+        })
+    }
+})
 
 app.post('/tonetestscore', function(request, response){
     newScore = new db.Score({username : request.user.username, score : request.body.score})

@@ -129,6 +129,10 @@ body {
 	overflow:none;
 }
 
+.bigText {
+	font-size:36px;
+}
+
 .timer,.score{
 	font-family:fantasy;
 	font-size:36px;

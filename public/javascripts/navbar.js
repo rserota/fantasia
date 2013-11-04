@@ -27,4 +27,8 @@ $(document).ready(function(){
             
         },1)
     })
+
+    $('.help').on('click', function(){
+        
+    })
 })

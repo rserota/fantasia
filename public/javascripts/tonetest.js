@@ -149,14 +149,14 @@ $(document).ready(function(){
     var go = $('.go')
 
     var setScoreMultiplier = function(){
-    	var multiplier = 5
+    	var multiplier = 4
     	for (var i = 0; i < enabledIntervals.length; i++){
     		if (enabledIntervals[i][0] === true){
     			multiplier += 1
 
     		}
     	}
-    	if (multiplier < 7){
+    	if (multiplier < 6){
     		multiplier = 0
     	}
     	return multiplier
@@ -167,8 +167,20 @@ $(document).ready(function(){
     		go.removeClass("on")
     	}
     	go.one("click",function(){
-    		go.addClass("on")
-    		trialLoop()
+            if (setScoreMultiplier() > 0){
+        		go.addClass("on")
+        		trialLoop() 
+            }
+            else {
+                $('.feedback').addClass('helpText').addClass('bigText')
+                $('.feedback').text('Please enable at least two intervals to begin testing. ' +
+                 ' Use the buttons on the right to enable or disable intervals.')
+
+                setTimeout(function(){
+                    $('.feedback').removeClass('helpText').removeClass('bigText')
+                    setGo()
+                }, 4000)
+            }
         })
     }
 
@@ -253,7 +265,7 @@ $(document).ready(function(){
     }
     $('.help').on('click',function(){
     	if (!$('.go').hasClass('on')){
-    	    $('.feedback').toggleClass('helpText')
+    	    $('.feedback').toggleClass('helpText').removeClass('bigText')
     	    $('.feedback').text(helpText)
     	}
     })
