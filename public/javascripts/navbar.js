@@ -12,7 +12,6 @@ $(document).ready(function(){
         $button.removeClass('on')
         setTimeout(function(){
             $this.addClass('on')
-            
         },1)
     })
 
@@ -24,11 +23,6 @@ $(document).ready(function(){
             console.log(size)
             var newHeight = (60 + (26*(size-2)))
             $this.height(newHeight)
-            
         },1)
-    })
-
-    $('.help').on('click', function(){
-        
     })
 })

@@ -73,6 +73,17 @@ app.isAuthenticated = function(request, response, next){
     response.redirect("/login")
 };
 
+var onlyTheBest = function(scores){
+    var accountedFor = {}
+    var newScores = []
+    for (var i = 0; i < scores.length; i++){
+        if (!accountedFor[scores[i].username]){
+            newScores.push(scores[i])
+            accountedFor[scores[i].username] = true
+        }
+    }
+    return newScores
+}
 
 ///
 
@@ -134,6 +145,7 @@ app.post('/tonetestscore', function(request, response){
 app.get('/leaderboards/alltime', app.isAuthenticated, function(request, response){
     db.Score.find({}, function(error, scores){
         scores.sort(function(a,b){return b.score - a.score})
+        scores = onlyTheBest(scores)
         response.render('leaderboards', {history : 'All Time', scores : scores})
     })
 })
@@ -145,6 +157,7 @@ app.get('/leaderboards/monthly', app.isAuthenticated, function(request, response
     first.setMinutes(0)
     db.Score.find({date : {$gte : first}}, function(error, scores){
         scores.sort(function(a,b){return b.score - a.score})
+        scores = onlyTheBest(scores)
         response.render('leaderboards', {history : 'Monthly', scores : scores})
     })
 })
@@ -155,6 +168,7 @@ app.get('/leaderboards/daily', app.isAuthenticated, function(request, response){
     first.setMinutes(0)
     db.Score.find({date : {$gte : first}}, function(error, scores){
         scores.sort(function(a,b){return b.score - a.score})
+        scores = onlyTheBest(scores)
         response.render('leaderboards', {history : 'Daily', scores : scores})
     })
 })
