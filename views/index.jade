@@ -7,6 +7,14 @@ html
     link(rel="shortcut icon", href="../media/images/favicon.ico")
   body
     include navbar
+
+    h1.headtext <span class='raised'>News</span>
+    .newsContainer
+      ul.newsList
+        -for (var i = 0; i < newsItems.length; i++){
+          li.newsListItem.raised <span class='username'>#{scores[i].username}</span><span class='score'>#{scores[i].score} : #{i+1}</span>
+        -}
+
     .feedback
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
   script(src="../javascripts/navbar.js")

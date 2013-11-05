@@ -15,6 +15,7 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 // my modules
 var db = require('./db')
+var newsBody = require('./newsBody')
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -135,11 +136,26 @@ app.post('/signup', function(request, response){
     }
 })
 
-app.post('/tonetestscore', function(request, response){
-    newScore = new db.Score({username : request.user.username, score : request.body.score})
-    newScore.save(function(error, score){
-        response.send('Score submitted!')
-    })
+app.post('/tonetestscore', app.isAuthenticated, function(request, response){
+    var newScore = new db.Score({username : request.user.username, score : request.body.score})
+    db.Score.find()
+        .where({'username' : newScore.username})
+        .sort({'score' : -1})
+        .limit(1)
+        .exec(function(error, results){
+            if ((results[0]) && newScore.score > results[0].score){
+                newNewsItem = new db.NewsItem({
+                    username : request.user.username,
+                    type : 'personalbest',
+                    body : newsBody.personalBest(results[0].score,newScore.score)
+                })
+                console.log(newNewsItem)
+                newNewsItem.save()
+            }
+            newScore.save(function(error, score){
+                response.send('Score submitted!')
+            })
+        })
 })
 
 app.get('/leaderboards/alltime', app.isAuthenticated, function(request, response){
@@ -175,7 +191,14 @@ app.get('/leaderboards/daily', app.isAuthenticated, function(request, response){
 
 /** THIS ROUTE MUST BE LAST */
 app.get('/:quote', app.isAuthenticated, function(request, response){
-    response.render('index', {time : new Date()})
+    db.NewsItem.find()
+        .where({'username' : request.user.username})
+        .sort({'date' : -1})
+        .limit(5)
+        .exec(function(error, results){
+            console.log('results: ', results)
+            response.render('index', {newsItems : results})
+        })
 })
 //////////////////////////////
 
