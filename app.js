@@ -15,7 +15,8 @@ var passport = require('passport')
 var LocalStrategy = require('passport-local').Strategy;
 // my modules
 var db = require('./db')
-var newsBody = require('./newsBody')
+var myRoutes = require('./routes/myRoutes')
+var awards = require('./awards')
 
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -36,11 +37,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
-
-
-
 ///
 
+/** Passport stuff */
 passport.serializeUser(function(user, done) {
     done(null, user);
 });
@@ -73,27 +72,11 @@ app.isAuthenticated = function(request, response, next){
     }
     response.redirect("/login")
 };
-
-var onlyTheBest = function(scores){
-    var accountedFor = {}
-    var newScores = []
-    for (var i = 0; i < scores.length; i++){
-        if (!accountedFor[scores[i].username]){
-            newScores.push(scores[i])
-            accountedFor[scores[i].username] = true
-        }
-    }
-    return newScores
-}
-
-///
+//////////////
 
 app.get('/', app.isAuthenticated, routes.index)
 
-app.get('/login', function(request, response){
-    response.status(418)
-    response.render('login')
-})
+app.get('/login', myRoutes.getLogin)
 
 app.get('/tonetest', app.isAuthenticated, function(request, response){
     response.render('tonetest')
@@ -102,7 +85,6 @@ app.get('/tonetest', app.isAuthenticated, function(request, response){
 app.get('/jqstep', app.isAuthenticated, function(request, response){
     response.render('jqstep')
 })
-
 
 app.get('/logout', function(request, response){
     request.logout()
@@ -113,93 +95,20 @@ app.get('/getuserinfo', app.isAuthenticated, function(request, response){
     response.send(request.user)
 })
 
-app.post('/login', passport.authenticate('local'), function(request, response) {
-    request.user.loginDates.push(new Date())
-    db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
-    response.send('/');
-});
+app.post('/login', passport.authenticate('local'), myRoutes.postLogin);
 
-app.post('/signup', function(request, response){
-    if (request.body.password.length < 5){
-        response.send({errors : {password : true}})
-    }
-    else {
-        bcrypt.genSalt(10, function(error, salt){
-            bcrypt.hash(request.body.password, salt, function(error, hash){
-                var newGuy = new db.User({username : request.body.username, password : hash})
-                newGuy.save(function(error, User){
-                    if(error){response.send(error)}
-                    else {response.send('success')}
-                })
-            })
-        })
-    }
-})
+app.post('/signup', myRoutes.postSignup)
 
-app.post('/tonetestscore', app.isAuthenticated, function(request, response){
-    var newScore = new db.Score({username : request.user.username, score : request.body.score})
-    db.Score.find()
-        .where({'username' : newScore.username})
-        .sort({'score' : -1})
-        .limit(1)
-        .exec(function(error, results){
-            if ((results[0]) && newScore.score > results[0].score){
-                newNewsItem = new db.NewsItem({
-                    username : request.user.username,
-                    type : 'personalbest',
-                    body : newsBody.personalBest(results[0].score,newScore.score)
-                })
-                console.log(newNewsItem)
-                newNewsItem.save()
-            }
-            newScore.save(function(error, score){
-                response.send('Score submitted!')
-            })
-        })
-})
+app.post('/tonetestscore', app.isAuthenticated, myRoutes.postTonetestScore)
 
-app.get('/leaderboards/alltime', app.isAuthenticated, function(request, response){
-    db.Score.find({}, function(error, scores){
-        scores.sort(function(a,b){return b.score - a.score})
-        scores = onlyTheBest(scores)
-        response.render('leaderboards', {history : 'All Time', scores : scores})
-    })
-})
+app.get('/leaderboards/alltime', app.isAuthenticated, myRoutes.getLeaderboardsAlltime)
 
-app.get('/leaderboards/monthly', app.isAuthenticated, function(request, response){
-    var first = new Date()
-    first.setDate(1)
-    first.setHours(0)
-    first.setMinutes(0)
-    db.Score.find({date : {$gte : first}}, function(error, scores){
-        scores.sort(function(a,b){return b.score - a.score})
-        scores = onlyTheBest(scores)
-        response.render('leaderboards', {history : 'Monthly', scores : scores})
-    })
-})
+app.get('/leaderboards/monthly', app.isAuthenticated, myRoutes.getLeaderboardsMonthly)
 
-app.get('/leaderboards/daily', app.isAuthenticated, function(request, response){
-    var first = new Date()
-    first.setHours(0)
-    first.setMinutes(0)
-    db.Score.find({date : {$gte : first}}, function(error, scores){
-        scores.sort(function(a,b){return b.score - a.score})
-        scores = onlyTheBest(scores)
-        response.render('leaderboards', {history : 'Daily', scores : scores})
-    })
-})
+app.get('/leaderboards/daily', app.isAuthenticated, myRoutes.getLeaderboardsDaily)
 
 /** THIS ROUTE MUST BE LAST */
-app.get('/:quote', app.isAuthenticated, function(request, response){
-    db.NewsItem.find()
-        .where({'username' : request.user.username})
-        .sort({'date' : -1})
-        .limit(5)
-        .exec(function(error, results){
-            console.log('results: ', results)
-            response.render('index', {newsItems : results})
-        })
-})
+app.get('/:quote', app.isAuthenticated, myRoutes.getQuote)
 //////////////////////////////
 
 /** Start the server */

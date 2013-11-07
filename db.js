@@ -9,8 +9,8 @@ var letsMakeADate = function(){
 var User = mongoose.model('User', {
     username : {type : String, match : /.../, required : true, unique : true},
     password : {type : String, required : true},
-    loginDates : {type : Array, default : []},
-    badges : {type : Array, default : []}
+    loginDates : {type : [Date], default : []},
+    awards : {type : Array, default : []}
 })
 
 var Score = mongoose.model('Score', {
