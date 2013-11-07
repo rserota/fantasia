@@ -10,7 +10,7 @@ var User = mongoose.model('User', {
     username : {type : String, match : /.../, required : true, unique : true},
     password : {type : String, required : true},
     loginDates : {type : [Date], default : []},
-    awards : {type : Array, default : []}
+    awards : {type : Object, default : {placeholder : false}}
 })
 
 var Score = mongoose.model('Score', {

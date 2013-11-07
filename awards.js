@@ -39,4 +39,5 @@ var tryTryAgain = new Award({
     // check : function
 }) 
 
-exports.onLogin = [welcomeToTheParty, doubleDip]
+exports.allAwards = [welcomeToTheParty, doubleDip]
+exports.on

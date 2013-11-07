@@ -15,20 +15,15 @@ var onlyTheBest = function(scores){
     return newScores
 }
 
-var checkAwards = function(which, request){
-    for (var i = 0; i < awards[which].length; i++){
-        if (awards[which][i].check(request)){
-            for (var j = 0; j < request.user.awards.length; j++){
-                console.log('awards[which][i]: ',awards[which][i])
-                console.log('request.user.awards[j]: ', request.user.awards[j])
-                console.log()
-                if (awards[which][i] === request.user.awards[j]){
-                    console.log('you already have this one')
-                }
-                else {
-                   db.User.update({_id : request.user._id}, {$addToSet : {awards : awards[which][i]}}, function(){})
-                }
-            }
+var checkAwards = function(request){
+    for (var i = 0; i < awards['allAwards'].length; i++){
+        var awardName = awards['allAwards'][i].name
+        console.log('award name: ', awardName) 
+        if (!(request.user.awards[awardName]) && awards['allAwards'][i].check(request) ){
+            console.log('you just earned this one!')
+            request.user.awards[awardName] = true
+            console.log('req user awards: ', request.user.awards)
+            db.User.update({_id : request.user._id}, {$set : {awards : request.user.awards}}, function(){})
         }
     }
 }
@@ -42,7 +37,7 @@ exports.getLogin  = function(request, response){
 exports.postLogin = function(request, response) {
     request.user.loginDates.push(new Date())
     db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
-    checkAwards('onLogin', request)   
+    checkAwards(request)   
     response.send('/');
 }
 
