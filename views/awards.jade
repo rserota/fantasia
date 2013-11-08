@@ -9,14 +9,14 @@ html
     include navbar
 
     h1.headtext <span class='raised'>My Awards</span>
-    .newsContainer
-      ul.newsList
+    .awardsContainer
+      ul.awardsList
         -for (var i = 0; i < myAwards.length; i++){
-          li.newsListItem.raised 
-            .type #{myAwards[i].name}
+          li.awardsListItem.raised
+            .awardName #{myAwards[i].name}
 
             hr.fuzzyHR
-            p.newsListItem!= myAwards[i].body
+            p!= myAwards[i].body
         -}
 
     .feedback

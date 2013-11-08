@@ -16,10 +16,10 @@ var onlyTheBest = function(scores){
 }
 
 var checkAwards = function(user, trigger){
-    for (var i = 0; i < awards.allAwards.length; i++){
-        var awardName = awards.allAwards[i].name
+    for (key in awards.allAwards){
+        var awardName = awards.allAwards[key].name
         console.log('award name: ', awardName) 
-        if (!(user.awards[awardName]) && awards.allAwards[i].trigger === trigger && awards.allAwards[i].check(user) ){
+        if (!(user.awards[awardName]) && awards.allAwards[key].trigger === trigger && awards.allAwards[key].check(user) ){
             console.log('you just earned this one!')
             user.awards[awardName] = true
             db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
@@ -64,13 +64,14 @@ exports.postSignup = function(request, response){
 
 exports.postTonetestScore = function(request, response){
     var newScore = new db.Score({username : request.user.username, score : request.body.score})
+/** PERSONAL BEST */
     db.Score.find()
         .where({'username' : newScore.username})
         .sort({'score' : -1})
         .limit(1)
         .exec(function(error, results){
             if ((results[0]) && newScore.score > results[0].score){
-                newNewsItem = new db.NewsItem({
+               var newNewsItem = new db.NewsItem({
                     username : request.user.username,
                     type : 'Personal Best!',
                     body : newsBody.personalBest(results[0].score,newScore.score)
@@ -81,7 +82,27 @@ exports.postTonetestScore = function(request, response){
                 response.send('Score submitted!')
             })
         })
-        checkAwards(request.user)
+/////////////////
+
+/** Did you top the daily leaderboards? */
+    var first = new Date()
+    first.setHours(0)
+    first.setMinutes(0)
+    db.Score.find()
+        .sort({'score' : -1})
+        .limit(1)
+        .exec(function(error, results){
+            if ((results[0]) && newScore.score > results[0].score){
+                var newNewsItem = new db.NewsItem({
+                    username : request.user.username,
+                    type : 'Daily Leader!',
+                    body : newsBody.dailyLeader(newScore.score)
+                })
+                newNewsItem.save()
+                awards.allAwards.kingForADay.award(request.user)
+            }
+        })
+    checkAwards(request.user)
 }
 
 exports.getLeaderboardsAlltime = function(request, response){
@@ -117,9 +138,9 @@ exports.getLeaderboardsDaily = function(request, response){
 
 exports.getAwards = function(request, response){
     var myAwards = []
-    for (var i = 0; i < awards.allAwards.length; i++){
-        if (awards.allAwards[i].name in request.user.awards){
-            myAwards.push(awards.allAwards[i])
+    for (key in awards.allAwards){
+        if (awards.allAwards[key].name in request.user.awards){
+            myAwards.push(awards.allAwards[key])
         }
     }
     response.render('awards', {myAwards : myAwards})

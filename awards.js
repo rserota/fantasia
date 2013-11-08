@@ -59,4 +59,31 @@ var tryTryAgain = new Award({
     }
 }) 
 
-exports.allAwards = [welcomeToTheParty, doubleDip, tryTryAgain]
+var kingForADay = new Award({
+    name : "King For A Day",
+    body : "Congratulations on getting to the top of the daily leaderboards, " +
+        "but don't get too comfortable.  The daily leaderboards reset at midnight",
+    image : './media/images/favicon.ico',
+    trigger : 'postscore',
+    check : function(user){},
+    award : function(user){
+        if (!(user.awards['King For A Day'])){
+            console.log('you just earned this one!')
+            user.awards['King For A Day'] = true
+            db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
+            var newNewsItem = new db.NewsItem({
+                username : user.username,
+                type : 'New Award!',
+                body : newsBody.earnedAward('King For A Day')
+            })
+            newNewsItem.save()
+        }
+    }
+})
+
+exports.allAwards = {
+    welcomeToTheParty : welcomeToTheParty,
+    doubleDip : doubleDip,
+    tryTryAgain : tryTryAgain,
+    kingForADay : kingForADay
+}

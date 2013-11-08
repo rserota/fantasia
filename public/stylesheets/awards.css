@@ -1,0 +1,39 @@
+.headtext {
+    margin-top:150px;
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.awardsList {
+    list-style-type: none;
+    padding:0;
+    margin:0;
+}
+
+.awardsListItem {
+    display: inline-block;
+    text-align: center;
+    width: 400px;
+    margin: 10px;
+
+}
+
+div.awardName {
+    height: 30px;
+    width: 300px;
+    margin: auto;
+    display:inline-block;
+    font-weight: bold;
+    font-size: 22px;
+    color:rgba(0,0,0,.8);
+    text-shadow: 0px 1px 0px #e5e5ee;
+    padding: 10px;
+    border-radius:15px;
+    border:6px outset rgba(50,50,50,.7);
+    background-image: -o-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: -moz-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: -webkit-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: -ms-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: linear-gradient(to left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+}
