@@ -23,6 +23,7 @@ $(document).ready(function(){
             $feedbackLabel.addClass('hidden')
             $feedback.addClass('transitioning')
             mode = 'login'
+            $('.username').focus()
             setTimeout(function(){
                 $feedback.addClass('login')
                 $loginform.removeClass('hidden')
@@ -40,7 +41,8 @@ $(document).ready(function(){
             $feedbackLabel.addClass('hidden')
             $feedback.addClass('transitioning')
             mode = 'signup'
-            setTimeout(function(){
+            $('.username').focus()
+            setTimeout(function(){               
                 $feedback.addClass('signup')
                 $loginform.removeClass('hidden')
                 $feedbackLabel.removeClass('hidden')

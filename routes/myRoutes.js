@@ -18,7 +18,6 @@ var onlyTheBest = function(scores){
 var checkAwards = function(user, trigger){
     for (key in awards.allAwards){
         var awardName = awards.allAwards[key].name
-        console.log('award name: ', awardName) 
         if (!(user.awards[awardName]) && awards.allAwards[key].trigger === trigger && awards.allAwards[key].check(user) ){
             console.log('you just earned this one!')
             user.awards[awardName] = true
@@ -89,10 +88,13 @@ exports.postTonetestScore = function(request, response){
     first.setHours(0)
     first.setMinutes(0)
     db.Score.find()
+        .where('date').gte(first)
         .sort({'score' : -1})
         .limit(1)
         .exec(function(error, results){
-            if ((results[0]) && newScore.score > results[0].score){
+            console.log('results[0]: ', results[0])
+            console.log('newScore: ', newScore)
+            if ((results[0]) && newScore.score >= results[0].score){
                 var newNewsItem = new db.NewsItem({
                     username : request.user.username,
                     type : 'Daily Leader!',
@@ -143,6 +145,7 @@ exports.getAwards = function(request, response){
             myAwards.push(awards.allAwards[key])
         }
     }
+    console.log(myAwards)
     response.render('awards', {myAwards : myAwards})
 }
 
@@ -150,7 +153,7 @@ exports.getQuote = function(request, response){
     db.NewsItem.find()
         .where({'username' : request.user.username})
         .sort({'date' : -1})
-        .limit(5)
+        .limit(15)
         .exec(function(error, results){
             response.render('index', {newsItems : results})
         })

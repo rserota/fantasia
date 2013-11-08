@@ -6,6 +6,7 @@ var Award = function(args){
     this.body =  args.body
     this.check = args.check
     this.image = args.image
+    this.award = args.award
 }
 
 var welcomeToTheParty = new Award({

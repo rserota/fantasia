@@ -18,5 +18,14 @@ var earnedAward = function(awardName){
     return body
 }
 
+var dailyLeader = function(score){
+    var king = ['king', 'lord', 'master']
+    var choice = king[Math.floor(Math.random() * king.length)]
+    var body = "Oh, wow, look at you!  You're the current " + choice +
+        " of the daily leaderboards with your recent score of " + score + " points."
+    return body
+}
+
 exports.earnedAward = earnedAward
 exports.personalBest = personalBest
+exports.dailyLeader = dailyLeader
