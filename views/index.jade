@@ -16,7 +16,7 @@ html
             .type #{newsItems[i].type}
             .date #{newsItems[i].date.toDateString()}
             hr.fuzzyHR
-            p.newsListItem #{newsItems[i].body}
+            p.newsListItem!= newsItems[i].body
         -}
 
     .feedback

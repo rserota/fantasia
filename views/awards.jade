@@ -8,15 +8,15 @@ html
   body
     include navbar
 
-    h1.headtext <span class='raised'>News</span>
+    h1.headtext <span class='raised'>My Awards</span>
     .newsContainer
       ul.newsList
-        -for (var i = 0; i < newsItems.length; i++){
+        -for (var i = 0; i < myAwards.length; i++){
           li.newsListItem.raised 
-            .type #{newsItems[i].type}
-            .date #{newsItems[i].date.toDateString()}
+            .type #{myAwards[i].name}
+
             hr.fuzzyHR
-            p.newsListItem #{newsItems[i].body}
+            p.newsListItem!= myAwards[i].body
         -}
 
     .feedback

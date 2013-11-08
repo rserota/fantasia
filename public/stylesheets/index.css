@@ -55,15 +55,17 @@
     padding:0;
     margin:0;
 }
-.newsListItem {
 
+.newsListItem {
+    margin:10px;
 }
+
 .newsContainer {
     border:4px solid black;
     width:65%;
     max-width:50%;
     margin:auto;
-    max-height:500px;
+    max-height:600px;
     overflow:auto;
     box-shadow: 4px 4px 2px 2px rgba(0,0,0,.7);
     border-radius: 2px;
@@ -75,6 +77,30 @@
     display : inline-block;
     font-weight: bold;
 }
+
 .date {
     float : right;
+}
+
+div.awardContainer {
+    text-align: center;
+}
+
+div.awardName {
+    height: 30px;
+    width: 300px;
+    margin: auto;
+    display:inline-block;
+    font-weight: bold;
+    font-size: 22px;
+    color:rgba(0,0,0,.8);
+    text-shadow: 0px 1px 0px #e5e5ee;
+    padding: 10px;
+    border-radius:15px;
+    border:6px outset rgba(50,50,50,.7);
+    background-image: -o-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: -moz-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: -webkit-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: -ms-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+    background-image: linear-gradient(to left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
 }

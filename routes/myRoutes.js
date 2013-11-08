@@ -15,19 +15,23 @@ var onlyTheBest = function(scores){
     return newScores
 }
 
-var checkAwards = function(request){
-    for (var i = 0; i < awards['allAwards'].length; i++){
-        var awardName = awards['allAwards'][i].name
+var checkAwards = function(user, trigger){
+    for (var i = 0; i < awards.allAwards.length; i++){
+        var awardName = awards.allAwards[i].name
         console.log('award name: ', awardName) 
-        if (!(request.user.awards[awardName]) && awards['allAwards'][i].check(request) ){
+        if (!(user.awards[awardName]) && awards.allAwards[i].trigger === trigger && awards.allAwards[i].check(user) ){
             console.log('you just earned this one!')
-            request.user.awards[awardName] = true
-            console.log('req user awards: ', request.user.awards)
-            db.User.update({_id : request.user._id}, {$set : {awards : request.user.awards}}, function(){})
+            user.awards[awardName] = true
+            db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
+            var newNewsItem = new db.NewsItem({
+                username : user.username,
+                type : 'New Award!',
+                body : newsBody.earnedAward(awardName)
+            })
+            newNewsItem.save()
         }
     }
 }
-
 
 exports.getLogin  = function(request, response){
     response.status(418)
@@ -37,7 +41,7 @@ exports.getLogin  = function(request, response){
 exports.postLogin = function(request, response) {
     request.user.loginDates.push(new Date())
     db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
-    checkAwards(request)   
+    checkAwards(request.user)   
     response.send('/');
 }
 
@@ -77,6 +81,7 @@ exports.postTonetestScore = function(request, response){
                 response.send('Score submitted!')
             })
         })
+        checkAwards(request.user)
 }
 
 exports.getLeaderboardsAlltime = function(request, response){
@@ -108,6 +113,16 @@ exports.getLeaderboardsDaily = function(request, response){
         scores = onlyTheBest(scores)
         response.render('leaderboards', {history : 'Daily', scores : scores})
     })
+}
+
+exports.getAwards = function(request, response){
+    var myAwards = []
+    for (var i = 0; i < awards.allAwards.length; i++){
+        if (awards.allAwards[i].name in request.user.awards){
+            myAwards.push(awards.allAwards[i])
+        }
+    }
+    response.render('awards', {myAwards : myAwards})
 }
 
 exports.getQuote = function(request, response){

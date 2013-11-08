@@ -5,7 +5,6 @@
 var bcrypt = require('bcrypt')
 var express = require('express');
 var routes = require('./routes');
-var user = require('./routes/user');
 var http = require('http');
 var path = require('path');
 var fs = require('fs')
@@ -106,6 +105,8 @@ app.get('/leaderboards/alltime', app.isAuthenticated, myRoutes.getLeaderboardsAl
 app.get('/leaderboards/monthly', app.isAuthenticated, myRoutes.getLeaderboardsMonthly)
 
 app.get('/leaderboards/daily', app.isAuthenticated, myRoutes.getLeaderboardsDaily)
+
+app.get('/awards', app.isAuthenticated, myRoutes.getAwards)
 
 /** THIS ROUTE MUST BE LAST */
 app.get('/:quote', app.isAuthenticated, myRoutes.getQuote)

@@ -1,3 +1,6 @@
+var db = require('./db')
+var newsBody = require('./routes/newsBody')
+
 var Award = function(args){
     this.name = args.name
     this.body =  args.body
@@ -9,8 +12,9 @@ var welcomeToTheParty = new Award({
     name : 'Welcome To The Party',
     body : "You've successfully created an account!  Welcome to Rad Audio.",
     image : './media/images/favicon.ico',
-    check : function(request){
-        if (request.user.loginDates.length > 0){
+    trigger : 'login',
+    check : function(user){
+        if (user.loginDates.length > 0){
             return true
         }
     }
@@ -20,11 +24,12 @@ var doubleDip = new Award({
     name : "Double Dip",
     body : "You've logged in twice in one day!  You must really like it here.",
     image : './media/images/favicon.ico',
-    check : function(request){
-        if (request.user.loginDates.length > 1){
-            var numLogins = request.user.loginDates.length
-            var lastLoginDay = request.user.loginDates[numLogins - 1].toLocaleDateString()
-            var previousLoginDay = request.user.loginDates[numLogins - 2].toLocaleDateString()
+    trigger : 'login',
+    check : function(user){
+        if (user.loginDates.length > 1){
+            var numLogins = user.loginDates.length
+            var lastLoginDay = user.loginDates[numLogins - 1].toLocaleDateString()
+            var previousLoginDay = user.loginDates[numLogins - 2].toLocaleDateString()
             if (lastLoginDay === previousLoginDay){
                 return true
             }
@@ -33,11 +38,25 @@ var doubleDip = new Award({
 })
 
 var tryTryAgain = new Award({
-    name : "Try, Try again",
+    name : "Try, Try Again",
     body : "You can master musical intervals the same way anyone masters anything.",     
     image : './media/images/favicon.ico',
-    // check : function
+    trigger : 'postscore',
+    check : function(user){
+        db.Score.find({username : user.username}).exec(function(error, results){
+            if (results.length > 0){
+                console.log('you just earned this one!')
+                user.awards["Try, Try Again"] = true
+                db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
+                var newNewsItem = new db.NewsItem({
+                    username : user.username,
+                    type : 'New Award!',
+                    body : newsBody.earnedAward("Try, Try Again")
+                })
+                newNewsItem.save()
+            }
+        })
+    }
 }) 
 
-exports.allAwards = [welcomeToTheParty, doubleDip]
-exports.on
+exports.allAwards = [welcomeToTheParty, doubleDip, tryTryAgain]

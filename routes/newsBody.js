@@ -7,5 +7,16 @@ var personalBest = function(oldScore, newScore){
     return body
 }
 
+var earnedAward = function(awardName){
+    var prestigious = ['prestigious', 'honorific', 'rad', 'fabulous', 'magnificent', 'ironic']
+    var choice = prestigious[Math.floor(Math.random() * prestigious.length)]
+    var councils = ['Council', 'Assembly', 'Committee', 'Board', 'Ministry', 'Conclave']
+    var council = councils[Math.floor(Math.random() * councils.length)]
+    var body = "After much deliberation, the Awards " + council + " at Rad Audio has voted" +
+        " to award you with one of our most " + choice + " awards," +
+        '<div class = awardContainer><div class = awardName>' + '"' + awardName + '"</div></div>'
+    return body
+}
 
+exports.earnedAward = earnedAward
 exports.personalBest = personalBest
