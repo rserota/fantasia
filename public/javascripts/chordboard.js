@@ -1,27 +1,27 @@
 var tones = {
-	C1: new Audio('../media/sounds/treble/C1.wav'),
-	Db1: new Audio('../media/sounds/treble/Db1.wav'),
-	D1: new Audio('../media/sounds/treble/D1.wav'),
-	Eb1: new Audio('../media/sounds/treble/Eb1.wav'),
-	E1: new Audio('../media/sounds/treble/E1.wav'),
-	F1: new Audio('../media/sounds/treble/F1.wav'),
-	Gb1: new Audio('../media/sounds/treble/Gb1.wav'),
-	G1: new Audio('../media/sounds/treble/G1.wav'),
-	Ab1: new Audio('../media/sounds/treble/Ab1.wav'),
-	A1: new Audio('../media/sounds/treble/A1.wav'),
-	Bb1: new Audio('../media/sounds/treble/Bb1.wav'),
-	B1: new Audio('../media/sounds/treble/B1.wav'),
-	C2: new Audio('../media/sounds/treble/C2.wav'),
-	Db2: new Audio('../media/sounds/treble/Db2.wav'),
-	D2: new Audio('../media/sounds/treble/D2.wav'),
-	Eb2: new Audio('../media/sounds/treble/Eb2.wav'),
-	E2: new Audio('../media/sounds/treble/E2.wav'),
-	F2: new Audio('../media/sounds/treble/F2.wav'),
-	Gb2: new Audio('../media/sounds/treble/Gb2.wav'),
-	G2: new Audio('../media/sounds/treble/G2.wav'),
-	Ab2: new Audio('../media/sounds/treble/Ab2.wav'),
-	A2: new Audio('../media/sounds/treble/A2.wav'),
-	Bb2: new Audio('../media/sounds/treble/Bb2.wav')
+	C1: new Howl({urls : ['../media/sounds/treble/C1.wav'], volume : 0.5}),
+	Db1: new Howl({urls : ['../media/sounds/treble/Db1.wav'], volume : 0.5}),
+	D1: new Howl({urls : ['../media/sounds/treble/D1.wav'], volume : 0.5}),
+	Eb1: new Howl({urls : ['../media/sounds/treble/Eb1.wav'], volume : 0.5}),
+	E1: new Howl({urls : ['../media/sounds/treble/E1.wav'], volume : 0.5}),
+	F1: new Howl({urls : ['../media/sounds/treble/F1.wav'], volume : 0.5}),
+	Gb1: new Howl({urls : ['../media/sounds/treble/Gb1.wav'], volume : 0.5}),
+	G1: new Howl({urls : ['../media/sounds/treble/G1.wav'], volume : 0.5}),
+	Ab1: new Howl({urls : ['../media/sounds/treble/Ab1.wav'], volume : 0.5}),
+	A1: new Howl({urls : ['../media/sounds/treble/A1.wav'], volume : 0.5}),
+	Bb1: new Howl({urls : ['../media/sounds/treble/Bb1.wav'], volume : 0.5}),
+	B1: new Howl({urls : ['../media/sounds/treble/B1.wav'], volume : 0.5}),
+	C2: new Howl({urls : ['../media/sounds/treble/C2.wav'], volume : 0.5}),
+	Db2: new Howl({urls : ['../media/sounds/treble/Db2.wav'], volume : 0.5}),
+	D2: new Howl({urls : ['../media/sounds/treble/D2.wav'], volume : 0.5}),
+	Eb2: new Howl({urls : ['../media/sounds/treble/Eb2.wav'], volume : 0.5}),
+	E2: new Howl({urls : ['../media/sounds/treble/E2.wav'], volume : 0.5}),
+	F2: new Howl({urls : ['../media/sounds/treble/F2.wav'], volume : 0.5}),
+	Gb2: new Howl({urls : ['../media/sounds/treble/Gb2.wav'], volume : 0.5}),
+	G2: new Howl({urls : ['../media/sounds/treble/G2.wav'], volume : 0.5}),
+	Ab2: new Howl({urls : ['../media/sounds/treble/Ab2.wav'], volume : 0.5}),
+	A2: new Howl({urls : ['../media/sounds/treble/A2.wav'], volume : 0.5}),
+	Bb2: new Howl({urls : ['../media/sounds/treble/Bb2.wav'], volume : 0.5})
 }
 
 var chords = {
@@ -38,6 +38,13 @@ var down8=false
 var down9=false
 var down0=false
 
+var setToneLabels = function(a,b,c,d){
+	$('#7').text(a)
+	$('#8').text(b)
+	$('#9').text(c)
+	$('#0').text(d)
+}
+
 $(document).ready(function(){
 	$(document).keydown(function(event){
 ////////// Left hand events		
@@ -46,24 +53,28 @@ $(document).ready(function(){
 			$('#chords .keybound').removeClass('on')
 			$('#1').addClass('on')
 			boundChord = chords.alpha
+			setToneLabels('C','E','G','B')
 		}
 		if(event.which === 50){
 			console.log('2!')
 			$('#chords .keybound').removeClass('on')
 			$('#2').addClass('on')
 			boundChord = chords.beta
+			setToneLabels('F','A','C','E')
 		}
 		if(event.which === 51){
 			console.log('3!')
 			$('#chords .keybound').removeClass('on')
 			$('#3').addClass('on')
 			boundChord = chords.gamma
+			setToneLabels('G','B','D','F')
 		}
 		if(event.which === 52){
 			console.log('4!')
 			$('#chords .keybound').removeClass('on')
 			$('#4').addClass('on')
 			boundChord = chords.delta
+			setToneLabels('A','C','E','F')
 		}
 
 /////////// Right hand events
@@ -97,29 +108,30 @@ $(document).ready(function(){
 			console.log('7!')
 			$('#7').removeClass('on')
 			down7=false
-			boundChord[0].pause()
-			boundChord[0].currentTime = 0
+			boundChord[0].stop()
+
+			// boundChord[0].currentTime = 0
 		}
 		if(event.which === 56){
 			console.log('8!')
 			$('#8').removeClass('on')
 			down8=false
-			boundChord[1].pause()
-			boundChord[1].currentTime = 0			
+			boundChord[1].stop()
+			// boundChord[1].currentTime = 0			
 		}
 		if(event.which === 57){
 			console.log('9!')
 			$('#9').removeClass('on')
 			down9=false
-			boundChord[2].pause()
-			boundChord[2].currentTime = 0
+			boundChord[2].stop()
+			// boundChord[2].currentTime = 0
 		}
 		if(event.which === 48){
 			console.log('0!')
 			$('#0').removeClass('on')
 			down0=false
-			boundChord[3].pause()
-			boundChord[3].currentTime = 0
+			boundChord[3].stop()
+			// boundChord[3].currentTime = 0
 		}
 	})
 })

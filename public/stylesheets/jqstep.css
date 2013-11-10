@@ -110,8 +110,9 @@
 }
 .keybound {
 	display:inline-block;
-	height:60px;
+	height:38px;
 	width:60px;
+    padding-top:22px;
 	margin: 5px 10px 10px 10px;
 	background-color:rgba(0,0,0,.8);
 	border:4px solid rgba(200,150,20,1);

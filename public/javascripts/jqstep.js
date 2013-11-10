@@ -1,18 +1,18 @@
 
-var C1 = new Howl({urls : ['../media/sounds/bass/C1.wav']}),
-    D1 = new Howl({urls : ['../media/sounds/bass/D1.wav']}),
-    E1 = new Howl({urls : ['../media/sounds/bass/E1.wav']}),
-    F1 = new Howl({urls : ['../media/sounds/bass/F1.wav']}),
-    G1 = new Howl({urls : ['../media/sounds/bass/G1.wav']}),
-    A1 = new Howl({urls : ['../media/sounds/bass/A1.wav']}),
-    B1 = new Howl({urls : ['../media/sounds/bass/B1.wav']}),
-    C2 = new Howl({urls : ['../media/sounds/bass/C2.wav']}),
-    D2 = new Howl({urls : ['../media/sounds/bass/D2.wav']}),
-    E2 = new Howl({urls : ['../media/sounds/bass/E2.wav']}),
-    F2 = new Howl({urls : ['../media/sounds/bass/F2.wav']}),
-    G2 = new Howl({urls : ['../media/sounds/bass/G2.wav']}),
-    A2 = new Howl({urls : ['../media/sounds/bass/A2.wav']}),
-    B2 = new Howl({urls : ['../media/sounds/bass/B2.wav']})
+var C1 = new Howl({urls : ['../media/sounds/bass/C1.wav'], volume : 0.7}),
+    D1 = new Howl({urls : ['../media/sounds/bass/D1.wav'], volume : 0.7}),
+    E1 = new Howl({urls : ['../media/sounds/bass/E1.wav'], volume : 0.7}),
+    F1 = new Howl({urls : ['../media/sounds/bass/F1.wav'], volume : 0.7}),
+    G1 = new Howl({urls : ['../media/sounds/bass/G1.wav'], volume : 0.7}),
+    A1 = new Howl({urls : ['../media/sounds/bass/A1.wav'], volume : 0.7}),
+    B1 = new Howl({urls : ['../media/sounds/bass/B1.wav'], volume : 0.7}),
+    C2 = new Howl({urls : ['../media/sounds/bass/C2.wav'], volume : 0.7}),
+    D2 = new Howl({urls : ['../media/sounds/bass/D2.wav'], volume : 0.7}),
+    E2 = new Howl({urls : ['../media/sounds/bass/E2.wav'], volume : 0.7}),
+    F2 = new Howl({urls : ['../media/sounds/bass/F2.wav'], volume : 0.7}),
+    G2 = new Howl({urls : ['../media/sounds/bass/G2.wav'], volume : 0.7}),
+    A2 = new Howl({urls : ['../media/sounds/bass/A2.wav'], volume : 0.7}),
+    B2 = new Howl({urls : ['../media/sounds/bass/B2.wav'], volume : 0.7})
 
 
 
