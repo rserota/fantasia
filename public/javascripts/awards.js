@@ -14,4 +14,7 @@ $(document).ready(function(){
         choice = hits[Math.floor(Math.random() * hits.length)]
         choice.play()
     })
+    $('.help').on('click', function(){
+        $('.feedback').toggleClass('helpText')
+    })
 })

@@ -6,16 +6,21 @@ html
     link(rel='stylesheet', href='/stylesheets/login.css')
     link(rel="shortcut icon", href="../media/images/favicon.ico")
   body
+    #myNavbar
+      .help ?
+
 
     #buttonContainer
       #signup.fantastic.toggle Sign Up
       #login.fantastic.toggle Log in
+      br
+      #guestLogin.fantastic Guest Login    
       hr.fuzzyHR
       #submit.fantastic Submit
 
-    
 
     .feedback
+      .helpTextDiv
       #feedbackLabel
       form#loginform
         input.form.username(name="username", placeholder="Username",type="text")

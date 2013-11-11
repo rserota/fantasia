@@ -4,7 +4,9 @@
     font-weight: bold;
     text-align: center;
 }
-
+.awardsContainer {
+    text-align: center;
+}
 .awardsList {
     list-style-type: none;
     padding:0;
@@ -36,4 +38,8 @@ div.awardName {
     background-image: -webkit-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
     background-image: -ms-linear-gradient(left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
     background-image: linear-gradient(to left bottom, rgb(166, 166, 166) 0%, rgb(252, 254, 255) 63%, rgb(235, 235, 235) 90%);
+}
+
+.helpText {
+    min-height: 50px;
 }

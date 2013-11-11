@@ -37,6 +37,14 @@ exports.getLogin  = function(request, response){
     response.render('login')
 }
 
+exports.postGuestLogin = function(request, response){
+    db.User.update({username : 'Guest'}, {$set : {loginDates : [], 'awards' : {'placeholder' : false}}}, function(){}) 
+    db.Score.remove({username : 'Guest'}, function(){})
+    db.NewsItem.remove({username : 'Guest'}, function(){})
+    checkAwards(request.user)
+    response.send('/')
+}
+
 exports.postLogin = function(request, response) {
     request.user.loginDates.push(new Date())
     db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})

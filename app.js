@@ -96,6 +96,8 @@ app.get('/getuserinfo', app.isAuthenticated, function(request, response){
 
 app.post('/login', passport.authenticate('local'), myRoutes.postLogin);
 
+app.post('/guestLogin', passport.authenticate('local'), myRoutes.postGuestLogin)
+
 app.post('/signup', myRoutes.postSignup)
 
 app.post('/tonetestscore', app.isAuthenticated, myRoutes.postTonetestScore)

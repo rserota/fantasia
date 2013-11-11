@@ -14,7 +14,11 @@ html
         -for (var i = 0; i < scores.length; i++){
           li.scoreListItem.raised <span class='username'>#{scores[i].username}</span><span class='score'>#{scores[i].score} : #{i+1}</span>
         -}
-
+    .feedback
+      | Welcome to the leaderbords! This page will show you the #{history} 
+      | high scores from all of Rad Audio's users.  See how your best score compares
+      | with your peers!  I hope you don't have to scroll too far to find your 
+      | own score.  
 
   script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
   script(src="../javascripts/navbar.js")
