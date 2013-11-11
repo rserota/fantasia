@@ -42,37 +42,21 @@
     text-align: center;
 }
 
-#login, #signup {
+#login, #signup, #guestLogin {
     padding-top:23px;
     display: inline-block;
     width: 90px;
     height: 40px;
     margin: 20px;
+    border-radius: 15px;
 }
 
-#signup {
-    border-radius: 40px 50px 10px 10px;
-}
 
-#login {
-    border-radius: 50px 40px 10px 10px;
-}
-
-#guestLogin {
-    display:inline-block;
-    height: 40px;
-    width:50px;
-    border-radius: 50px 50px 10px 10px;
-    padding-top:10px;
-/*    position:fixed;
-    right:5%;
-    bottom:5%;*/
-}
 
 #submit {
     width:200px;
     margin:auto;
-    border-radius: 15px 15px 60px 60px
+    border-radius: 60px;
 }
 
 #submit.sad {
