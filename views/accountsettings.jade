@@ -1,0 +1,32 @@
+doctype 5
+html
+  head
+    title= title  
+    link(rel='stylesheet', href='/stylesheets/fantastic.css')    
+    link(rel='stylesheet', href='/stylesheets/accountsettings.css')
+    link(rel="shortcut icon", href="../media/images/favicon.ico")
+  body
+    include navbar
+    h1.headtext <span class='raised'>Account Settings</span>
+    .settingsContainer
+      ul.settingsList
+        li.settingsListItem.raised 
+          .settingName Delete My Account
+          hr.fuzzyHR
+          .confirmButton.fantastic.deleteAccountButton
+          p
+            |If you want to delete your account, press the button
+            | on the right.  You will be asked to confirm your decision.
+            | After you delete your account, it cannot be recovered.
+            | However, your scores will still live on in the leaderboards.
+
+
+
+    .feedback
+      #helpTextBox.hidden
+      #confirmBox.hidden
+        #confirm.fantastic Confirm
+        #cancel.fantastic Cancel
+  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+  script(src="../javascripts/navbar.js")
+  script(src="../javascripts/accountsettings.js")

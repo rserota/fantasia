@@ -45,7 +45,7 @@ exports.postGuestLogin = function(request, response){
             username : 'Guest',
             type : 'Welcome to Rad Audio!',
             body : "You're signed in with a guest account. You can freely" +
-                " check out any part of this site, but your data will not be" +
+                " check out any part of this site, but your progress will not be" +
                 " saved when you log out.  To make the most of your time at" +
                 " Rad Audio, you should sign up for an account.  It's quick and easy!"
         }) 
@@ -174,6 +174,10 @@ exports.getAwards = function(request, response){
     })
 }
 
+exports.accountSettings = function(request, response){
+    response.render('accountsettings')
+}
+
 exports.getQuote = function(request, response){
     db.NewsItem.find()
         .where({'username' : request.user.username})
@@ -182,4 +186,15 @@ exports.getQuote = function(request, response){
         .exec(function(error, results){
             response.render('index', {newsItems : results})
         })
+}
+
+exports.deleteAccount = function(request, response){
+    if (request.user.username === 'Guest'){
+        response.send('Guest')
+    }
+    else {
+        db.User.remove({username : request.user.username}, function(error){
+            response.send('/logout')
+        })
+    }
 }

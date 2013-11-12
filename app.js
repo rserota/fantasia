@@ -110,6 +110,10 @@ app.get('/leaderboards/daily', app.isAuthenticated, myRoutes.getLeaderboardsDail
 
 app.get('/awards', app.isAuthenticated, myRoutes.getAwards)
 
+app.get('/accountsettings', app.isAuthenticated, myRoutes.accountSettings)
+
+app.post('/deleteaccount', app.isAuthenticated, myRoutes.deleteAccount)
+
 /** THIS ROUTE MUST BE LAST */
 app.get('/:quote', app.isAuthenticated, myRoutes.getQuote)
 //////////////////////////////
