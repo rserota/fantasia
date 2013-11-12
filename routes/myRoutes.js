@@ -18,7 +18,7 @@ var onlyTheBest = function(scores){
 var checkAwards = function(user, trigger){
     for (key in awards.allAwards){
         var awardName = awards.allAwards[key].name
-        if (!(user.awards[awardName]) && awards.allAwards[key].trigger === trigger && awards.allAwards[key].check(user) ){
+        if (!(user.awards[awardName]) && awards.allAwards[key].check(user) ){
             console.log('you just earned this one!')
             user.awards[awardName] = true
             db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
@@ -40,9 +40,21 @@ exports.getLogin  = function(request, response){
 exports.postGuestLogin = function(request, response){
     db.User.update({username : 'Guest'}, {$set : {loginDates : [], 'awards' : {'placeholder' : false}}}, function(){}) 
     db.Score.remove({username : 'Guest'}, function(){})
-    db.NewsItem.remove({username : 'Guest'}, function(){})
-    checkAwards(request.user)
-    response.send('/')
+    db.NewsItem.remove({username : 'Guest'}, function(){   
+        newNewsItem = new db.NewsItem({
+            username : 'Guest',
+            type : 'Welcome to Rad Audio!',
+            body : "You're signed in with a guest account. You can freely" +
+                " check out any part of this site, but your data will not be" +
+                " saved when you log out.  To make the most of your time at" +
+                " Rad Audio, you should sign up for an account.  It's quick and easy!"
+        }) 
+        newNewsItem.save(function(error,results){
+            checkAwards(request.user)
+            response.send('/')
+            
+        })
+    })
 }
 
 exports.postLogin = function(request, response) {
@@ -86,6 +98,7 @@ exports.postTonetestScore = function(request, response){
                 newNewsItem.save()
             }
             newScore.save(function(error, score){
+                checkAwards(request.user)
                 response.send('Score submitted!')
             })
         })
@@ -112,7 +125,6 @@ exports.postTonetestScore = function(request, response){
                 awards.allAwards.kingForADay.award(request.user)
             }
         })
-    checkAwards(request.user)
 }
 
 exports.getLeaderboardsAlltime = function(request, response){
@@ -148,13 +160,18 @@ exports.getLeaderboardsDaily = function(request, response){
 
 exports.getAwards = function(request, response){
     var myAwards = []
-    for (key in awards.allAwards){
-        if (awards.allAwards[key].name in request.user.awards){
-            myAwards.push(awards.allAwards[key])
+    console.log('req user awards :', request.user.awards)
+    db.User.find({username:request.user.username}, function(error,results){
+        console.log('results',results)
+        for (key in awards.allAwards){
+            console.log(awards.allAwards[key].name)
+            if (awards.allAwards[key].name in results[0].awards){
+                myAwards.push(awards.allAwards[key])
+            }
         }
-    }
-    console.log(myAwards)
-    response.render('awards', {myAwards : myAwards})
+        console.log('my awards :', myAwards)
+        response.render('awards', {myAwards : myAwards})
+    })
 }
 
 exports.getQuote = function(request, response){

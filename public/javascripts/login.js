@@ -52,7 +52,6 @@ $(document).ready(function(){
             $feedbackLabel.addClass('hidden')
             $feedback.addClass('transitioning')
             mode = 'login'
-            $('.username').focus()
             $('.helpTextDiv').text('')
             setTimeout(function(){
                 $feedback.addClass('login')
@@ -60,6 +59,7 @@ $(document).ready(function(){
                 $feedbackLabel.removeClass('hidden')
                 $feedback.removeClass('transitioning')
                 $feedbackLabel.text('Log In')
+                setTimeout(function(){$('.username').focus()},200)
             }, transitionDelay)
         }
     })
@@ -71,7 +71,6 @@ $(document).ready(function(){
             $feedbackLabel.addClass('hidden')
             $feedback.addClass('transitioning')
             mode = 'signup'
-            $('.username').focus()
             $('.helpTextDiv').text('')
             setTimeout(function(){               
                 $feedback.addClass('signup')
@@ -79,6 +78,7 @@ $(document).ready(function(){
                 $feedbackLabel.removeClass('hidden')
                 $feedback.removeClass('transitioning')
                 $feedbackLabel.text('Sign Up')
+                setTimeout(function(){$('.username').focus()},200)
             }, transitionDelay)
         }
     })
