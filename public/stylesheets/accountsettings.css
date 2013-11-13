@@ -37,7 +37,11 @@
 .openConfirm {
     width: 300px;
     height: 180px;
-    background-color:rgba(100,100,100,.6);
+    background-image: linear-gradient(right bottom, rgba(28,53,64,.8) 13%, rgba(58,83,94,.8) 97%);
+    background-image: -o-linear-gradient(right bottom, rgba(28,53,64,.8) 13%, rgba(58,83,94,.8) 97%);
+    background-image: -moz-linear-gradient(right bottom, rgba(28,53,64,.8) 13%, rgba(58,83,94,.8) 97%);
+    background-image: -webkit-linear-gradient(right bottom, rgba(28,53,64,.8) 13%, rgba(58,83,94,.8) 97%);
+    background-image: -ms-linear-gradient(right bottom, rgba(28,53,64,.8) 13%, rgba(58,83,94,.8) 97%);
 }
 
 #confirm, #cancel {
@@ -56,6 +60,7 @@
     height: 30px;
     width: 50px;
     font-size: 26px;
+    margin: 15px;
 }
 
 .hidden {

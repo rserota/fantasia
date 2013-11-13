@@ -7,11 +7,12 @@
 }
 
 body {
-    background-image: linear-gradient(left top, rgb(235,235,255) 0%, rgb(40,40,40) 100%);
-    background-image: -o-linear-gradient(left top, rgb(235,235,255) 0%, rgb(24,40,40) 100%);
-    background-image: -moz-linear-gradient(left top, rgb(235,235,255) 0%, rgb(40,40,40) 100%);
-    background-image: -webkit-linear-gradient(left top, rgb(235,235,255) 0%, rgb(40,40,40) 100%);
-    background-image: -ms-linear-gradient(left top, rgb(235,235,255) 0%, rgb(40,40,40) 100%);
+    background-image: linear-gradient(left top, rgba(133,129,108,1) 0%, rgba(133,129,108,1) 100%);
+    background-image: -o-linear-gradient(left top, rgba(133,129,108,1) 0%, rgba(133,129,108,1) 100%);
+    background-image: -moz-linear-gradient(left top, rgba(133,129,108,1) 0%, rgba(133,129,108,1) 100%);
+    background-image: -webkit-linear-gradient(left top, rgba(143,139,118,1) 0%, rgba(73,69,48,1) 100%);
+    background-image: -ms-linear-gradient(left top, rgba(133,129,108,1) 0%, rgba(133,129,108,1) 100%);
+    /*background-color: rgba(133,129,108,1);*/
     height: 100%;
     margin:0;
     background-repeat: no-repeat;
@@ -27,7 +28,8 @@ a:link, a:visited, a:active {
 
 a:hover {
     text-decoration:none;
-    color:#7C4;
+    /*color:#7C4;*/
+    color:ghostwhite;
     -webkit-transition:all .5s;
     transition: all .5s;
 }
@@ -38,11 +40,12 @@ a:hover {
 #myNavbar {
     width:100%;
     height:79px;
-    background-image: linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
-    background-image: -o-linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
-    background-image: -moz-linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
-    background-image: -webkit-linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
-    background-image: -ms-linear-gradient(right bottom, rgb(0,0,0) 13%, rgb(128,128,128) 97%);
+    background-image: linear-gradient(right bottom, rgba(28,53,64,1) 13%, rgba(58,83,94,1) 97%);
+    background-image: -o-linear-gradient(right bottom, rgba(28,53,64,1) 13%, rgba(58,83,94,1) 97%);
+    background-image: -moz-linear-gradient(right bottom, rgba(28,53,64,1) 13%, rgba(58,83,94,1) 97%);
+    background-image: -webkit-linear-gradient(right bottom, rgba(28,53,64,1) 13%, rgba(58,83,94,1) 97%);
+    background-image: -ms-linear-gradient(right bottom, rgba(28,53,64,1) 13%, rgba(58,83,94,1) 97%);
+    /*background-color:rgba(38,63,74,1);*/
     margin-bottom:5px;
 /*    border-bottom:4px solid black;*/
     box-shadow: -1px 4px 3px 0px rgba(0,0,0,.7);
@@ -71,7 +74,7 @@ a:hover {
 .help {
     -webkit-transition:all .4s;
     transition: all .4s;
-    border: 5px solid ghostwhite;
+    border: 5px solid rgba(255,255,255,.8);
     border-radius: 1000px;
     float:right;
     position:fixed;
@@ -81,6 +84,11 @@ a:hover {
     text-align:center;
     box-shadow: 8px 8px 3px rgba(0,0,0,.7);
     background-color:rgba(0,0,0,1);
+        background-image: linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
+    background-image: -o-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
+    background-image: -moz-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
+    background-image: -webkit-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
+    background-image: -ms-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
     color:ghostwhite;
     margin:10px;
     font-family:serif;
@@ -103,7 +111,9 @@ a:hover {
     background-image: -moz-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
     background-image: -webkit-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
     background-image: -ms-linear-gradient(left top, rgba(0,0,0,.9) 15%, rgba(36,36,36,.9) 69%);
-    border:4px solid rgba(200,150,20,1);
+/*    background-color:rgba(0,0,0,.9);*/
+    /*border:4px solid rgba(133,129,108,1);*/
+    border:4px solid rgba(112,103,49,1);
     border-radius:10px;
     color:ghostwhite;
     position: relative;
@@ -115,11 +125,12 @@ a:hover {
 
 .on {
     border:4px solid rgba(20,15,20,1);
-    background-image: linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
-    background-image: -o-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
-    background-image: -moz-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
-    background-image: -webkit-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
-    background-image: -ms-linear-gradient(right bottom, rgba(92,92,255,.95) 35%, rgba(92,146,255,.95) 72%);
+    background-image: linear-gradient(right bottom, rgba(19,110,112,.95) 35%, rgba(29,120,122,.95) 72%);
+    background-image: -o-linear-gradient(right bottom, rgba(19,110,112,.95) 35%, rgba(29,120,122,.95) 72%);
+    background-image: -moz-linear-gradient(right bottom, rgba(19,110,112,.95) 35%, rgba(29,120,122,.95) 72%);
+    background-image: -webkit-linear-gradient(right bottom, rgba(19,110,112,.95) 35%, rgba(39,130,132,.95) 72%);
+    background-image: -ms-linear-gradient(right bottom, rgba(19,110,112,.95) 35%, rgba(29,120,122,.95) 72%);
+/*    background-color:rgba(19,110,112,.9);*/
     color:black;
     top:5px;
     left:2px;
@@ -151,7 +162,7 @@ a:hover {
     background-image: linear-gradient(top, rgba(235,235,255,.8) 32%, rgba(168,168,188,.9) 100%);
     background-image: -o-linear-gradient(top, rgba(235,235,255,.8) 32%, rgba(168,168,188,.9) 100%);
     background-image: -moz-linear-gradient(top, rgba(235,235,255,.8) 32%, rgba(168,168,188,.9) 100%);
-    background-image: -webkit-linear-gradient(top, rgba(235,235,255,.8) 32%, rgba(168,168,188,.9) 100%);
+    background-image: -webkit-linear-gradient(top, rgba(235,235,245,.9) 32%, rgba(168,168,148,.9) 100%);
     background-image: -ms-linear-gradient(top, rgba(235,235,255,.8) 32%, rgba(168,168,188,.9) 100%);
     box-shadow: 2px 2px 1px rgba(0,0,0,.7);
     border-radius: 10px;
@@ -181,7 +192,7 @@ a:hover {
 .helpText {
     font-family: serif;
     width: 90%;
-    background-color:rgba(244,244,244,.85);
+    background-color:rgba(255,255,255,.8);
     border-radius:30px 3000px 3000px 30px;
     color: rgba(0,0,0,.9);
     font-size:16px;
