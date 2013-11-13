@@ -98,17 +98,19 @@ var kingForADay = new Award({
     trigger : 'postscore',
     check : function(user){},
     award : function(user){
-        if (!(user.awards['King For A Day'])){
-            console.log('you just earned this one!')
-            // user.awards['King For A Day'] = true
-            db.User.update({_id : user._id}, {$set : {'awards.King For A Day' : true}}, function(){})
-            var newNewsItem = new db.NewsItem({
-                username : user.username,
-                type : 'New Award!',
-                body : newsBody.earnedAward('King For A Day')
-            })
-            newNewsItem.save()
-        }
+        db.User.find({username:user.username}, function(error, results){
+            if (!(results[0].awards['King For A Day'])){
+                console.log('you just earned this one!')
+                // user.awards['King For A Day'] = true
+                db.User.update({_id : user._id}, {$set : {'awards.King For A Day' : true}}, function(){})
+                var newNewsItem = new db.NewsItem({
+                    username : user.username,
+                    type : 'New Award!',
+                    body : newsBody.earnedAward('King For A Day')
+                })
+                newNewsItem.save()
+            }
+        })
     }
 })
 
