@@ -93,6 +93,7 @@ var tragedyOfTheCommons = new Award({
         db.User.find({username : 'Guest'}, function(error, results){
             if (!results[0].awards['Tragedy Of The Commons']){
                 user.awards['Tragedy Of The Commons'] = true
+                console.log('user.awards: ', user.awards)
                 db.User.update({username : 'Guest'}, {$set : {awards : user.awards}}, function(){})
                 var newNewsItem = new db.NewsItem({
                     username : 'Guest',
