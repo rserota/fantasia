@@ -82,9 +82,33 @@ var kingForADay = new Award({
     }
 })
 
+var tragedyOfTheCommons = new Award({
+    name : "Tragedy Of The Commons",
+    body : "Why would you try to delete the Guest account?  Do you just" +
+        " enjoy ruining things for other people?",
+    image : './media/images/favicon.ico',
+    trigger : '',
+    check : function(user){},
+    award : function(user){
+        db.User.find({username : 'Guest'}, function(error, results){
+            if (!results[0].awards['Tragedy Of The Commons']){
+                user.awards['Tragedy Of The Commons'] = true
+                db.User.update({username : 'Guest'}, {$set : {awards : user.awards}}, function(){})
+                var newNewsItem = new db.NewsItem({
+                    username : 'Guest',
+                    type : 'New Award',
+                    body : newsBody.earnedAward('Tragedy Of The Commons')
+                })
+                newNewsItem.save()
+            }
+        })
+    } 
+})
+
 exports.allAwards = {
     welcomeToTheParty : welcomeToTheParty,
     doubleDip : doubleDip,
     tryTryAgain : tryTryAgain,
-    kingForADay : kingForADay
+    kingForADay : kingForADay,
+    tragedyOfTheCommons : tragedyOfTheCommons
 }

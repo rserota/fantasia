@@ -1,6 +1,8 @@
 $(document).ready(function(){
     var $feedback = $('.feedback')
     var mode = ''
+    var helpText = 'This is your account settings page.  Right now, all you can do here' +
+        " is delete your account (please don't).  More features are coming soon!"
     var cantDeleteGuest = function(){
         console.log('Cant delete guest!')
         $feedback.removeClass('openConfirm')
@@ -54,4 +56,33 @@ $(document).ready(function(){
             })
         }
     })
+    $('.help').on('click', function(){
+        if($feedback.hasClass('openConfirm')){
+            $feedback.removeClass('openConfirm')
+            setTimeout(function(){
+                $('#confirmBox').addClass('hidden')
+                $('#helpTextBox').removeClass('hidden')
+                $('#helpTextBox').text(helpText)
+                $feedback.addClass('helpText')
+            },400)
+        }
+        else {
+            $('#confirmBox').addClass('hidden')
+            $('#helpTextBox').removeClass('hidden')
+            $('#helpTextBox').text(helpText)
+            $feedback.toggleClass('helpText')
+        }
+    })
+
 })
+
+
+
+
+
+
+
+
+
+
+

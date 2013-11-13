@@ -44,7 +44,7 @@ exports.postGuestLogin = function(request, response){
         newNewsItem = new db.NewsItem({
             username : 'Guest',
             type : 'Welcome to Rad Audio!',
-            body : "You're signed in with a guest account. You can freely" +
+            body : "You're signed in with the guest account. You can freely" +
                 " check out any part of this site, but your progress will not be" +
                 " saved when you log out.  To make the most of your time at" +
                 " Rad Audio, you should sign up for an account.  It's quick and easy!"
@@ -190,6 +190,7 @@ exports.getQuote = function(request, response){
 
 exports.deleteAccount = function(request, response){
     if (request.user.username === 'Guest'){
+        awards.allAwards.tragedyOfTheCommons.award(request.user)
         response.send('Guest')
     }
     else {

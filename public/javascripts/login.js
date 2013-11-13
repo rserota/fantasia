@@ -8,8 +8,8 @@ $(document).ready(function(){
     var transitionDelay = 300
     var helpText = 'Welcome to Rad Audio, a training ground and playground for' +
         ' music students, with a primary focus on ear training for musical intervals.' +
-        ' Please sign up by choosing a username and password to have your accomplishments ' +
-        ' credited to you, or use the Guest Login to quickly try out this site.'
+        ' Please sign up by choosing a username and password to have your progress recorded,' +
+        ' or use the Guest Login to quickly try out this site.'
 
     $signupButtons.on('click', function(){
         if (!$feedback.hasClass('transitioning')){
