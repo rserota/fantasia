@@ -15,9 +15,17 @@ var welcomeToTheParty = new Award({
     image : './media/images/favicon.ico',
     trigger : 'login',
     check : function(user){
-        if (user.loginDates.length > 0){
-            return true
-        }
+        db.User.find({username : user.username}, function(error,results){
+            if(results[0].loginDates.length>0 && !results[0].awards['Welcome To The Party']){
+                db.User.update({_id : user._id}, {$set : {'awards.Welcome To The Party' : true}}, function(){})
+                var newNewsItem = new db.NewsItem({
+                    username : user.username,
+                    type : 'New Award!',
+                    body : newsBody.earnedAward("Welcome To The Party")
+                })
+                newNewsItem.save()
+            }
+        })
     }
 })
 

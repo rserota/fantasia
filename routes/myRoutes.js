@@ -63,7 +63,7 @@ exports.postGuestLogin = function(request, response){
 
 exports.postLogin = function(request, response) {
     request.user.loginDates.push(new Date())
-    db.User.update({_id : request.user._id}, {$set : {loginDates : request.user.loginDates}}, function(){})
+    db.User.update({_id : request.user._id}, {$push : {loginDates : new Date()}}, function(){})
     checkAwards(request.user)   
     response.send('/');
 }
