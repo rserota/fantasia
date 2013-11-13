@@ -37,20 +37,20 @@ var doubleDip = new Award({
 
     check : function(user){
         db.User.find({username : user.username}, function(error,results){
+            console.log('awards 40: ', results[0])
             var numLogins = results[0].loginDates.length
-            var lastLoginDay = results[0].loginDates[numLogins - 1].toLocaleDateString()
-            var previousLoginDay = user.loginDates[numLogins - 2].toLocaleDateString()
-            if (lastLoginDay === previousLoginDay){
-                return true
-            }
-            if(lastLoginDay === previousLoginDay && !results[0].awards['Welcome To The Party']){
-                db.User.update({_id : user._id}, {$set : {'awards.Double Dip' : true}}, function(){})
-                var newNewsItem = new db.NewsItem({
-                    username : user.username,
-                    type : 'New Award!',
-                    body : newsBody.earnedAward("Double Dip")
-                })
-                newNewsItem.save()
+            if (numLogins > 1){
+                var lastLoginDay = results[0].loginDates[numLogins - 1].toLocaleDateString()
+                var previousLoginDay = results[0].loginDates[numLogins - 2].toLocaleDateString()
+                if(lastLoginDay === previousLoginDay && !results[0].awards['Double Dip']){
+                    db.User.update({_id : user._id}, {$set : {'awards.Double Dip' : true}}, function(){})
+                    var newNewsItem = new db.NewsItem({
+                        username : user.username,
+                        type : 'New Award!',
+                        body : newsBody.earnedAward("Double Dip")
+                    })
+                    newNewsItem.save()
+                }
             }
         })
     }

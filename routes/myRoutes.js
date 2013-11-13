@@ -203,6 +203,8 @@ exports.deleteAccount = function(request, response){
         response.send('Guest')
     }
     else {
+        db.NewsItem.remove({username : request.user.username},function(){})
+        db.Score.remove({username : request.user.username}, function(){})
         db.User.remove({username : request.user.username}, function(error){
             response.send('/logout')
         })
