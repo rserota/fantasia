@@ -34,16 +34,37 @@ var doubleDip = new Award({
     body : "You've logged in twice in one day!  You must really like it here.",
     image : './media/images/favicon.ico',
     trigger : 'login',
+
     check : function(user){
-        if (user.loginDates.length > 1){
-            var numLogins = user.loginDates.length
-            var lastLoginDay = user.loginDates[numLogins - 1].toLocaleDateString()
+        db.User.find({username : user.username}, function(error,results){
+            var numLogins = results[0].loginDates.length
+            var lastLoginDay = results[0].loginDates[numLogins - 1].toLocaleDateString()
             var previousLoginDay = user.loginDates[numLogins - 2].toLocaleDateString()
             if (lastLoginDay === previousLoginDay){
                 return true
             }
-        }
+            if(lastLoginDay === previousLoginDay && !results[0].awards['Welcome To The Party']){
+                db.User.update({_id : user._id}, {$set : {'awards.Double Dip' : true}}, function(){})
+                var newNewsItem = new db.NewsItem({
+                    username : user.username,
+                    type : 'New Award!',
+                    body : newsBody.earnedAward("Double Dip")
+                })
+                newNewsItem.save()
+            }
+        })
     }
+
+    // check : function(user){
+    //     if (user.loginDates.length > 1){
+    //         var numLogins = user.loginDates.length
+    //         var lastLoginDay = user.loginDates[numLogins - 1].toLocaleDateString()
+    //         var previousLoginDay = user.loginDates[numLogins - 2].toLocaleDateString()
+    //         if (lastLoginDay === previousLoginDay){
+    //             return true
+    //         }
+    //     }
+    // }
 })
 
 var tryTryAgain = new Award({
