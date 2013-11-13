@@ -88,6 +88,10 @@ app.get('/jqstep', app.isAuthenticated, function(request, response){
 app.get('/logout', function(request, response){
     request.logout()
     response.redirect('/login')
+    // request.session.destroy(function(error){
+    //     console.log('logout error: ', error)
+    //     response.redirect('/login')
+    // })
 })
 
 app.get('/getuserinfo', app.isAuthenticated, function(request, response){

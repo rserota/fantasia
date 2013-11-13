@@ -44,11 +44,12 @@ var tryTryAgain = new Award({
     image : './media/images/favicon.ico',
     trigger : 'postscore',
     check : function(user){
+        console.log('checking trytry: ')
         db.Score.find({username : user.username}).exec(function(error, results){
             if (results.length > 0){
                 console.log('you just earned this one!')
-                user.awards["Try, Try Again"] = true
-                db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
+                // user.awards["Try, Try Again"] = true
+                db.User.update({_id : user._id}, {$set : {'awards.Try, Try Again' : true}}, function(){})
                 var newNewsItem = new db.NewsItem({
                     username : user.username,
                     type : 'New Award!',
@@ -70,8 +71,8 @@ var kingForADay = new Award({
     award : function(user){
         if (!(user.awards['King For A Day'])){
             console.log('you just earned this one!')
-            user.awards['King For A Day'] = true
-            db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
+            // user.awards['King For A Day'] = true
+            db.User.update({_id : user._id}, {$set : {'awards.King For A Day' : true}}, function(){})
             var newNewsItem = new db.NewsItem({
                 username : user.username,
                 type : 'New Award!',
@@ -92,9 +93,7 @@ var tragedyOfTheCommons = new Award({
     award : function(user){
         db.User.find({username : 'Guest'}, function(error, results){
             if (!results[0].awards['Tragedy Of The Commons']){
-                user.awards['Tragedy Of The Commons'] = true
-                console.log('user.awards: ', user.awards)
-                db.User.update({username : 'Guest'}, {$set : {awards : user.awards}}, function(){})
+                db.User.update({username : 'Guest'}, {$set : {'awards.Tragedy Of The Commons' : true}}, function(){})
                 var newNewsItem = new db.NewsItem({
                     username : 'Guest',
                     type : 'New Award',

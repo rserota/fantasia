@@ -16,20 +16,24 @@ var onlyTheBest = function(scores){
 }
 
 var checkAwards = function(user, trigger){
-    for (key in awards.allAwards){
-        var awardName = awards.allAwards[key].name
-        if (!(user.awards[awardName]) && awards.allAwards[key].check(user) ){
-            console.log('you just earned this one!')
-            user.awards[awardName] = true
-            db.User.update({_id : user._id}, {$set : {awards : user.awards}}, function(){})
-            var newNewsItem = new db.NewsItem({
-                username : user.username,
-                type : 'New Award!',
-                body : newsBody.earnedAward(awardName)
-            })
-            newNewsItem.save()
+    db.User.find({username : user.username}, function(error, results){
+        for (key in awards.allAwards){
+            var awardName = awards.allAwards[key].name
+            console.log('myroutes22 : ', key)
+            if (!(results[0].awards[awardName]) && awards.allAwards[key].check(user) ){
+                console.log('you just earned this one!')
+                var setString = 'awards.' + awardName
+                db.User.update({_id : user._id}, {$set : {setString : true}}, function(){})
+                var newNewsItem = new db.NewsItem({
+                    username : user.username,
+                    type : 'New Award!',
+                    body : newsBody.earnedAward(awardName)
+                })
+                newNewsItem.save()
+            }
+            
         }
-    }
+    })
 }
 
 exports.getLogin  = function(request, response){
@@ -83,14 +87,17 @@ exports.postSignup = function(request, response){
 
 exports.postTonetestScore = function(request, response){
     var newScore = new db.Score({username : request.user.username, score : request.body.score})
+    console.log('newscore username: ', newScore.username)
 /** PERSONAL BEST */
     db.Score.find()
         .where({'username' : newScore.username})
         .sort({'score' : -1})
         .limit(1)
         .exec(function(error, results){
+            console.log('myroutes 95 error results: ', error,results)
             if ((results[0]) && newScore.score > results[0].score){
-               var newNewsItem = new db.NewsItem({
+                console.log('how did we get here')
+                var newNewsItem = new db.NewsItem({
                     username : request.user.username,
                     type : 'Personal Best!',
                     body : newsBody.personalBest(results[0].score,newScore.score)
@@ -98,6 +105,7 @@ exports.postTonetestScore = function(request, response){
                 newNewsItem.save()
             }
             newScore.save(function(error, score){
+                console.log('myroutes 104 error: ', error)
                 checkAwards(request.user)
                 response.send('Score submitted!')
             })
@@ -113,7 +121,7 @@ exports.postTonetestScore = function(request, response){
         .sort({'score' : -1})
         .limit(1)
         .exec(function(error, results){
-            console.log('results[0]: ', results[0])
+            console.log('myroutes 124 results[0]: ', results[0])
             console.log('newScore: ', newScore)
             if ((results[0]) && newScore.score >= results[0].score){
                 var newNewsItem = new db.NewsItem({
@@ -164,7 +172,6 @@ exports.getAwards = function(request, response){
     db.User.find({username:request.user.username}, function(error,results){
         console.log('results',results)
         for (key in awards.allAwards){
-            console.log(awards.allAwards[key].name)
             if (awards.allAwards[key].name in results[0].awards){
                 myAwards.push(awards.allAwards[key])
             }
