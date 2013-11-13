@@ -69,7 +69,7 @@ var doubleDip = new Award({
 
 var tryTryAgain = new Award({
     name : "Try, Try Again",
-    body : "You can master musical intervals the same way anyone masters anything.",     
+    body : "You tried the interval tester!  Keep at it.  You can master musical intervals the same way anyone masters anything.",     
     image : './media/images/favicon.ico',
     trigger : 'postscore',
     check : function(user){
