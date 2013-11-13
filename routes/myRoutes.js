@@ -38,7 +38,7 @@ exports.getLogin  = function(request, response){
 }
 
 exports.postGuestLogin = function(request, response){
-    db.User.update({username : 'Guest'}, {$set : {loginDates : [], 'awards' : {'placeholder' : false}}}, function(){}) 
+    db.User.update({username : 'Guest'}, {$set : {loginDates : [], 'awards' : {'placeholder' : false}}}, function(error){console.log('error :',error)}) 
     db.Score.remove({username : 'Guest'}, function(){})
     db.NewsItem.remove({username : 'Guest'}, function(){   
         newNewsItem = new db.NewsItem({
@@ -190,7 +190,9 @@ exports.getQuote = function(request, response){
 
 exports.deleteAccount = function(request, response){
     if (request.user.username === 'Guest'){
+        console.log('req.user: ', request.user)
         awards.allAwards.tragedyOfTheCommons.award(request.user)
+        console.log('req.user: ', request.user)
         response.send('Guest')
     }
     else {
