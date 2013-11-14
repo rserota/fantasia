@@ -74,7 +74,7 @@ $(document).ready(function(){
 			$('#chords .keybound').removeClass('on')
 			$('#4').addClass('on')
 			boundChord = chords.delta
-			setToneLabels('A','C','E','F')
+			setToneLabels('A','C','E','G')
 		}
 
 /////////// Right hand events
