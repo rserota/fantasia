@@ -134,4 +134,4 @@ $(document).ready(function(){
 			// boundChord[3].currentTime = 0
 		}
 	})
-})
+}) 

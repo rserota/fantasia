@@ -8,4 +8,4 @@
     
 // ]
 
-exports.quotes = ['']
+exports.quotes = [''] 

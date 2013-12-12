@@ -209,4 +209,4 @@ exports.deleteAccount = function(request, response){
             response.send('/logout')
         })
     }
-}
+} 
